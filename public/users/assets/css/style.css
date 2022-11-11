@@ -9945,7 +9945,7 @@ html,
   font-style: italic !important; }
 
 .text-white, .navbar.navbar-primary .navbar-menu-wrapper .nav-profile-text p, .navbar.navbar-secondary .navbar-menu-wrapper .nav-profile-text p, .navbar.navbar-success .navbar-menu-wrapper .nav-profile-text p, .navbar.navbar-info .navbar-menu-wrapper .nav-profile-text p, .navbar.navbar-warning .navbar-menu-wrapper .nav-profile-text p, .navbar.navbar-danger .navbar-menu-wrapper .nav-profile-text p, .navbar.navbar-light .navbar-menu-wrapper .nav-profile-text p, .navbar.navbar-dark .navbar-menu-wrapper .nav-profile-text p {
-  color: #ffffff !important; }
+  color: #0e2564 !important; }
 
 .text-primary {
   color: #0033c4 !important; }
@@ -14379,10 +14379,10 @@ dl {
   color: #000; }
 
 .navbar.navbar-dark .navbar-menu-wrapper {
-  background: #3e4b5b;
+  background: #0e2564;
   color: #ffffff; }
   .navbar.navbar-dark .navbar-menu-wrapper .search-field .input-group input:-ms-input-placeholder {
-    color: #ffffff; }
+    color: #0e2564; }
   .navbar.navbar-dark .navbar-menu-wrapper .search-field .input-group input:-moz-placeholder {
     color: #ffffff; }
   .navbar.navbar-dark .navbar-menu-wrapper .search-field .input-group input::-moz-placeholder {

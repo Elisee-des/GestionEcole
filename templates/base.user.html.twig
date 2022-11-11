@@ -1,51 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Plus Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset("../users/assets/vendors/mdi/css/materialdesignicons.min.css") }}">
-    <link rel="stylesheet" href="{{ asset("../users/assets/vendors/flag-icon-css/css/flag-icon.min.css") }}">
-    <link rel="stylesheet" href="../users/assets/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{ asset("../users/assets/vendors/jquery-bar-rating/css-stars.css") }}" />
-    <link rel="stylesheet" href="{{ asset("../users/assets/vendors/font-awesome/css/font-awesome.min.css") }}" />
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="{{ asset("../users/assets/css/demo_1/style.css") }}" />
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset("../users/assets/images/favicon.png") }}" />
-  </head>
-  <body>
-    {% block body %}{% endblock %}
-    </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{{ asset("../users/assets/vendors/js/vendor.bundle.base.js") }}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="{{ asset("../users/assets/vendors/jquery-bar-rating/jquery.barrating.min.js") }}"></script>
-    <script src="{{ asset("../users/assets/vendors/chart.js/Chart.min.js") }}"></script>
-    <script src="{{ asset("../users/assets/vendors/flot/jquery.flot.js") }}"></script>
-    <script src="{{ asset("../users/assets/vendors/flot/jquery.flot.resize.js") }}"></script>
-    <script src="{{ asset("../users/assets/vendors/flot/jquery.flot.categories.js") }}"></script>
-    <script src="{{ asset("../users/assets/vendors/flot/jquery.flot.fillbetween.js") }}"></script>
-    <script src="{{ asset("../users/assets/vendors/flot/jquery.flot.stack.js") }}"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset("../users/assets/js/off-canvas.js") }}"></script>
-    <script src="{{ asset("../users/assets/js/hoverable-collapse.js") }}"></script>
-    <script src="{{ asset("../users/assets/js/misc.js") }}"></script>
-    <script src="{{ asset("../users/assets/js/settings.js") }}"></script>
-    <script src="{{ asset("../users/assets/js/todolist.js") }}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="{{ asset("../users/assets/js/dashboard.js") }}"></script>
-    <!-- End custom js for this page -->
-  </body>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+
+		<!-- plugins:css -->
+		<link rel="stylesheet" href="{{ asset("../users/assets/vendors/mdi/css/materialdesignicons.min.css") }}">
+		<link rel="stylesheet" href="{{ asset("../users/assets/vendors/flag-icon-css/css/flag-icon.min.css") }}">
+		<link rel="stylesheet" href="../users/assets/vendors/css/vendor.bundle.base.css">
+		<!-- endinject -->
+		<!-- Plugin css for this page -->
+		<link rel="stylesheet" href="{{ asset("../users/assets/vendors/jquery-bar-rating/css-stars.css") }}"/> <link rel="stylesheet" href="{{ asset("../users/assets/vendors/font-awesome/css/font-awesome.min.css") }}"/>
+		<!-- End plugin css for this page -->
+		<!-- inject:css -->
+		<!-- endinject -->
+		<!-- Layout styles -->
+		<link
+		rel="stylesheet" href="{{ asset("../users/assets/css/demo_1/style.css") }}"/> <!-- End layout styles -->
+		<link rel="shortcut icon" href="{{ asset("../users/assets/images/favicon.png") }}"/>
+	</head>
+	<body>
+		<div
+			class="container-scroller">
+			<!-- partial:partials/_sidebar.html -->
+			{% include "user/include/navbar.html.twig" %}
+			<!-- partial -->
+			<div class="main-panel">
+				<div class="content-wrapper pb-0">
+					<div class="page-header flex-wrap">
+						<div class="header-left">
+							<button class="btn btn-primary mb-2 mb-md-0 mr-2">
+								Create new document
+							</button>
+							<button class="btn btn-outline-primary bg-white mb-2 mb-md-0">
+								Import documents
+							</button>
+						</div>
+						<div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
+							<div class="d-flex align-items-center">
+								<a href="#">
+									<p class="m-0 pr-3">Dashboard</p>
+								</a>
+								<a class="pl-3 mr-4" href="#">
+									<p class="m-0">ADE-00234</p>
+								</a>
+							</div>
+							<button type="button" class="btn btn-primary mt-2 mt-sm-0 btn-icon-text">
+								<i class="mdi mdi-plus-circle"></i>
+								Add Prodcut
+							</button>
+						</div>
+					</div>
+						{% block body %}{% endblock %}
+					<!-- first row starts here -->
+
+					<!-- chart row starts here -->
+
+				</div>
+				<!-- content-wrapper ends -->
+				<!-- partial:partials/_footer.html -->
+				{% include "user/include/footer.html.twig" %}
+				<!-- partial -->
+			</div>
+			<!-- main-panel ends -->
+		</div>
+		<!-- page-body-wrapper ends -->
+
+		<!-- container-scroller -->
+		<!-- plugins:js --><script src="{{ asset("../users/assets/vendors/js/vendor.bundle.base.js") }}"> </script>
+		<!-- endinject -->
+		<!-- Plugin js for this page -->
+		<script src="{{ asset("../users/assets/vendors/jquery-bar-rating/jquery.barrating.min.js") }}"></script>
+		<script src="{{ asset("../users/assets/vendors/chart.js/Chart.min.js") }}"></script>
+		<script src="{{ asset("../users/assets/vendors/flot/jquery.flot.js") }}"></script>
+		<script src="{{ asset("../users/assets/vendors/flot/jquery.flot.resize.js") }}"></script>
+		<script src="{{ asset("../users/assets/vendors/flot/jquery.flot.categories.js") }}"></script>
+		<script src="{{ asset("../users/assets/vendors/flot/jquery.flot.fillbetween.js") }}"></script>
+		<script src="{{ asset("../users/assets/vendors/flot/jquery.flot.stack.js") }}"></script>
+		<!-- End plugin js for this page -->
+		<!-- inject:js -->
+		<script src="{{ asset("../users/assets/js/off-canvas.js") }}"></script>
+		<script src="{{ asset("../users/assets/js/hoverable-collapse.js") }}"></script>
+		<script src="{{ asset("../users/assets/js/misc.js") }}"></script>
+		<script src="{{ asset("../users/assets/js/settings.js") }}"></script>
+		<script src="{{ asset("../users/assets/js/todolist.js") }}"></script>
+		<!-- endinject -->
+		<!-- Custom js for this page -->
+		<script src="{{ asset("../users/assets/js/dashboard.js") }}"></script>
+		<!-- End custom js for this page -->
+	</body>
 </html>
