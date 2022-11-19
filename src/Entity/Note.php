@@ -16,6 +16,18 @@ class Note
     #[ORM\Column(type: 'integer')]
     private $note;
 
+    #[ORM\ManyToOne(targetEntity: Eleve::class, inversedBy: 'notes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $eleve;
+
+    #[ORM\ManyToOne(targetEntity: Matiere::class, inversedBy: 'notes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $matiere;
+
+    #[ORM\ManyToOne(targetEntity: Trimestre::class, inversedBy: 'notes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $trimestre;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +41,42 @@ class Note
     public function setNote(int $note): self
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getEleve(): ?Eleve
+    {
+        return $this->eleve;
+    }
+
+    public function setEleve(?Eleve $eleve): self
+    {
+        $this->eleve = $eleve;
+
+        return $this;
+    }
+
+    public function getMatiere(): ?Matiere
+    {
+        return $this->matiere;
+    }
+
+    public function setMatiere(?Matiere $matiere): self
+    {
+        $this->matiere = $matiere;
+
+        return $this;
+    }
+
+    public function getTrimestre(): ?Trimestre
+    {
+        return $this->trimestre;
+    }
+
+    public function setTrimestre(?Trimestre $trimestre): self
+    {
+        $this->trimestre = $trimestre;
 
         return $this;
     }

@@ -19,6 +19,10 @@ class Abscence
     #[ORM\Column(type: 'datetime')]
     private $dateCreationAt;
 
+    #[ORM\ManyToOne(targetEntity: Eleve::class, inversedBy: 'abscences')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $eleve;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +48,18 @@ class Abscence
     public function setDateCreationAt(\DateTimeInterface $dateCreationAt): self
     {
         $this->dateCreationAt = $dateCreationAt;
+
+        return $this;
+    }
+
+    public function getEleve(): ?Eleve
+    {
+        return $this->eleve;
+    }
+
+    public function setEleve(?Eleve $eleve): self
+    {
+        $this->eleve = $eleve;
 
         return $this;
     }
