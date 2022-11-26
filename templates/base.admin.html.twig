@@ -1,147 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <title>{% block title %}Dashboard{% endblock %} </title>
-    <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-      <!-- Meta -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="description" content="CodedThemes">
-      <meta name="keywords" content=" Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
-      <meta name="author" content="CodedThemes">
-      <!-- Favicon icon -->
-      <link rel="icon" href="{{ asset("assets/images/favicon.ico") }}" type="image/x-icon">
-      <!-- Google font-->
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
-      <!-- Required Fremwork -->
-      <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/bootstrap/css/bootstrap.min.css") }}">
-      <!-- themify-icons line icon -->
-      <link rel="stylesheet" type="text/css" href="{{ asset("assets/icon/themify-icons/themify-icons.css") }}">
-      <!-- ico font -->
-      <link rel="stylesheet" type="text/css" href="{{ asset("assets/icon/icofont/css/icofont.css") }}">
-      <!-- Style.css -->
-      <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/style.css") }}">
-      <link rel="stylesheet" type="text/css" href="{{ asset("assets/css/jquery.mCustomScrollbar.css") }}">
-  </head>
+	<head>
+		<title>
+			{% block title %}Dashboard
+			{% endblock %}
+		</title>
+		<!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+																																						      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+																																						      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+																																						      <![endif]-->
+		<!-- Meta -->
+		<meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="description" content="CodedThemes">
+		<meta name="keywords" content=" Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+		<meta
+		name="author" content="CodedThemes">
+		<!-- Favicon icon -->
+		<link
+		rel="icon" href="{{ asset("assets/images/favicon.ico") }}" type="image/x-icon">
+		<!-- Google font-->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+		<link
+		rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
+		<!-- Required Fremwork -->
+		<link
+		rel="stylesheet" type="text/css" href="{{ asset("assets/css/bootstrap/css/bootstrap.min.css") }}">
+		<!-- themify-icons line icon -->
+		<link
+		rel="stylesheet" type="text/css" href="{{ asset("assets/icon/themify-icons/themify-icons.css") }}">
+		<!-- ico font -->
+		<link
+		rel="stylesheet" type="text/css" href="{{ asset("assets/icon/icofont/css/icofont.css") }}">
+		<!-- Style.css -->
+		<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/style.css") }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset("assets/css/jquery.mCustomScrollbar.css") }}">
+	</head>
 
-  <body>
-    <!-- Pre-loader start -->
-    <div class="theme-loader">
-        <div class="ball-scale">
-            <div class='contain'>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
+	<body>
+		<!-- Pre-loader start -->
+		<div class="theme-loader">
+			<div class="ball-scale">
+				<div class='contain'>
+					<div class="ring">
+						<div class="frame"></div>
+					</div>
+					<div class="ring">
+						<div class="frame"></div>
+					</div>
+					<div class="ring">
 
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Pre-loader end -->
-    <div id="pcoded" class="pcoded">
-        <div class="pcoded-overlay-box"></div>
-        <div class="pcoded-container navbar-wrapper">
+						<div class="frame"></div>
+					</div>
+					<div class="ring">
+						<div class="frame"></div>
+					</div>
+					<div class="ring">
+						<div class="frame"></div>
+					</div>
+					<div class="ring">
+						<div class="frame"></div>
+					</div>
+					<div class="ring">
+						<div class="frame"></div>
+					</div>
+					<div class="ring">
+						<div class="frame"></div>
+					</div>
+					<div class="ring">
+						<div class="frame"></div>
+					</div>
+					<div class="ring">
+						<div class="frame"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Pre-loader end -->
+		<div id="pcoded" class="pcoded">
+			<div class="pcoded-overlay-box"></div>
+			<div class="pcoded-container navbar-wrapper">
 
-            {% include "admin/includes/navbar.html.twig" %}
-            <div class="pcoded-main-container">
-                <div class="pcoded-wrapper">
-                    {% include "admin/includes/navbar2.html.twig" %}
-                    <div class="pcoded-content">
-                        <div class="pcoded-inner-content">
-                            <div class="main-body">
-                                <div class="page-wrapper">
+				{% include "admin/includes/navbar.html.twig" %}
+				<div class="pcoded-main-container">
+					<div class="pcoded-wrapper">
+						{% include "admin/includes/navbar2.html.twig" %}
+						<div class="pcoded-content">
+							<div class="pcoded-inner-content">
+								<div class="main-body">
+									<div class="page-wrapper">
 
-                                    <div class="page-body">
-                                        <div class="row">
-                                        {% block body %}
-                                            
-                                        {% endblock %}
-                                        </div>
-                                    </div>
+										<div class="page-body">
+											<div class="container">
+												<div class="content">
+													<div class="clearfix mb-3">
+														<div class="row">
+															<div class="col-6">
+																<h2>
+																	<strong>
+																		{% block titre %}{% endblock %}
+																	</strong>
+																</h2>
+															</div>
+															<div class="col-6">
+																<h2>
+																	{% block boutons %}{% endblock %}
+																</h2>
+															</div>
+														</div>
+													</div>
+												</div>
+												{% block body %}{% endblock %}
+											</div>
+										</div>
 
-                                    <div id="styleSelector">
+										<div id="styleSelector"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="fixed-button">
+						<a href="https://codedthemes.com/item/guru-able-admin-template/" target="_blank" class="btn btn-md btn-primary">
+							<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+							Upgrade To Pro
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="fixed-button">
-                    <a href="https://codedthemes.com/item/guru-able-admin-template/" target="_blank" class="btn btn-md btn-primary">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i> Upgrade To Pro
-                    </a>
-                </div>
-            </div>
-        </div>
+		<!-- Warning Section Starts -->
+		<!-- Required Jquery -->
 
-        <!-- Warning Section Starts -->
-<!-- Required Jquery -->
-<script type="text/javascript" src="{{ asset("assets/js/jquery/jquery.min.js") }}"></script>
-<script type="text/javascript" src="{{ asset("assets/js/jquery-ui/jquery-ui.min.js") }}"></script>
-<script type="text/javascript" src="{{ asset("assets/js/popper.js/popper.min.js") }}"></script>
-<script type="text/javascript" src="{{ asset("assets/js/bootstrap/js/bootstrap.min.js") }}"></script>
-<!-- jquery slimscroll js -->
-<script type="text/javascript" src="{{ asset("assets/js/jquery-slimscroll/jquery.slimscroll.js") }}"></script>
-<!-- modernizr js -->
-<script type="text/javascript" src="{{ asset("assets/js/modernizr/modernizr.js") }}"></script>
-<!-- am chart -->
-<script src="{{ asset("assets/pages/widget/amchart/amcharts.min.js") }}"></script>
-<script src="{{ asset("assets/pages/widget/amchart/serial.min.js") }}"></script>
-<!-- Todo js -->
-<script type="text/javascript " src="{{ asset("assets/pages/todo/todo.js") }} "></script>
-<!-- Custom js -->
-<script type="text/javascript" src="{{ asset("assets/pages/dashboard/custom-dashboard.js") }}"></script>
-<script type="text/javascript" src="{{ asset("assets/js/script.js") }}"></script>
-<script type="text/javascript " src="{{ asset("assets/js/SmoothScroll.js") }}"></script>
-<script src="{{ asset("assets/js/pcoded.min.js") }}"></script>
-<script src="{{ asset("assets/js/demo-12.js") }}"></script>
-<script src="{{ asset("assets/js/jquery.mCustomScrollbar.concat.min.js") }}"></script>
-<script>
-var $window = $(window);
+		<script type="text/javascript" src="{{ asset("assets/js/jquery/jquery.min.js") }}"></script>
+		<script type="text/javascript" src="{{ asset("assets/js/jquery-ui/jquery-ui.min.js") }}"></script>
+		<script type="text/javascript" src="{{ asset("assets/js/popper.js/popper.min.js") }}"></script>
+		<script type="text/javascript" src="{{ asset("assets/js/bootstrap/js/bootstrap.min.js") }}"></script>
+		<!-- jquery slimscroll js -->
+		<script type="text/javascript" src="{{ asset("assets/js/jquery-slimscroll/jquery.slimscroll.js") }}"></script>
+		<!-- modernizr js -->
+		<script type="text/javascript" src="{{ asset("assets/js/modernizr/modernizr.js") }}"></script>
+		<!-- am chart -->
+		<script src="{{ asset("assets/pages/widget/amchart/amcharts.min.js") }}"></script>
+		<script src="{{ asset("assets/pages/widget/amchart/serial.min.js") }}"></script>
+		<!-- Todo js -->
+		<script type="text/javascript " src="{{ asset("assets/pages/todo/todo.js") }} "></script>
+		<!-- Custom js -->
+		<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+		<script type="text/javascript" src="{{ asset("assets/pages/dashboard/custom-dashboard.js") }}"></script>
+		<script type="text/javascript" src="{{ asset("assets/js/script.js") }}"></script>
+		<script type="text/javascript " src="{{ asset("assets/js/SmoothScroll.js") }}"></script>
+		<script src="{{ asset("assets/js/pcoded.min.js") }}"></script>
+		<script src="{{ asset("assets/js/demo-12.js") }}"></script>
+		<script src="{{ asset("assets/js/jquery.mCustomScrollbar.concat.min.js") }}"></script>
+		<script>
+			var $window = $(window);
 var nav = $('.fixed-button');
-    $window.scroll(function(){
-        if ($window.scrollTop() >= 200) {
-         nav.addClass('active');
-     }
-     else {
-         nav.removeClass('active');
-     }
- });
-</script>
-</body>
+$window.scroll(function () {
+if ($window.scrollTop() >= 200) {
+nav.addClass('active');
+} else {
+nav.removeClass('active');
+}
+});
+		</script>
+		<script>
+			$(document).ready(function () {
+$('#example').DataTable();
+});
+		</script>
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script>
+			{% for message in app.flashes("success") %}
+Swal.fire({"icon": "success", "title": "Success", "text":"{{ message }}", "timer": 20000}){% endfor %}
+		</script>
+		{% block javascripts %}{% endblock %}
+	</body>
 </html>
