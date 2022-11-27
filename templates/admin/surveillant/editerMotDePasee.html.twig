@@ -1,0 +1,36 @@
+{% extends "base.admin.html.twig" %}
+
+{% block title %}
+	Modifier le mot de passe du surveillant
+	{{ surveillant.nom }}
+	{{ surveillant.prenom }}
+{% endblock %}
+
+{% block titre %}
+	Modifier le mot de passe du surveillant
+	{{ surveillant.nom }}
+	{{ surveillant.prenom }}
+{% endblock %}
+{% block boutons %}{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="container"><br>
+			{{ form(form) }}
+			</div>
+		</div>
+		<ul>
+			<a
+				href="{{ path("admin_surveillant_detail", {id: surveillant.id}) }}" class="btn btn-inverse btn-outline-inverse">
+				{# <i class="mdi mdi-pencil"></i> #}
+				Retour au detail
+			</a>
+			<a
+				href="{{ path("admin_surveillant_liste") }}" class="btn btn-inverse btn-outline-inverse">
+				{# <i class="mdi mdi-pencil"></i> #}
+				Retour a la liste des surveillants
+			</a>
+		</ul>
+	{% endblock %}
+
+	{% block javascripts %}{% endblock %}

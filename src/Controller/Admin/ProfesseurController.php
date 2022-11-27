@@ -58,7 +58,7 @@ class ProfesseurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $role = ["ROLE_professeur"];
+            $role = ["ROLE_PROFESSEUR"];
 
             $nom = $request->get("creer_professeur")["nom"];
             $prenom = $request->get("creer_professeur")["prenom"];

@@ -77,6 +77,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $matieres;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isSurveillant;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
@@ -301,6 +306,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $matiere->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsSurveillant(): ?bool
+    {
+        return $this->isSurveillant;
+    }
+
+    public function setIsSurveillant(?bool $isSurveillant): self
+    {
+        $this->isSurveillant = $isSurveillant;
 
         return $this;
     }
