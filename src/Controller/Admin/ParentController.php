@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Form\CreerParentType;
+use App\Form\EditerParentType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,6 +33,18 @@ class ParentController extends AbstractController
     }
 
     /**
+     * @Route("/detail/{id}", name="detail")
+     */
+    public function detai(User $parent): Response
+    {
+
+        return $this->render('admin/parent/detail.html.twig', [
+            'parent' => $parent,
+        ]);
+    }
+
+
+    /**
      * @Route("/creer", name="creer")
      */
     public function creer(EntityManagerInterface $entityManager, Request $request, UserPasswordHasherInterface $passwordhasher): Response
@@ -43,7 +56,6 @@ class ParentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $role = ["ROLE_PARENT"];
 
             $nom = $request->get("creer_parent")["nom"];
@@ -66,7 +78,7 @@ class ParentController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Le parent ' .$parent->getNom() . ' ' .  $parent->getPrenom(). " a ete ajouter avec succes a la liste des parents"
+                'Le parent ' . $parent->getNom() . ' ' .  $parent->getPrenom() . " a ete ajouter avec succes a la liste des parents"
             );
 
             return $this->redirectToRoute('admin_parent_liste');
@@ -80,51 +92,54 @@ class ParentController extends AbstractController
     /**
      * @Route("/editer/{id}", name="editer")
      */
-    public function editer(EntityManagerInterface $entityManager, Request $request, AnneeScolaire $anneeScolaire): Response
+    public function editer(EntityManagerInterface $entityManager, Request $request, User $parent): Response
     {
-
-        $form = $this->createForm(EditerAnneeScolaireType::class, $anneeScolaire);
+        $form = $this->createForm(EditerParentType::class, $parent);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $annee = $request->get("editer_annee_scolaire")["annee"];
-            $description = $request->get("editer_annee_scolaire")["description"];
+            $nom = $request->get("editer_parent")["nom"];
+            $prenom = $request->get("editer_parent")["prenom"];
+            $numero = $request->get("editer_parent")["numero"];
+            $email = $request->get("editer_parent")["email"];
 
-            $anneeScolaire->setAnnee($annee);
-            $anneeScolaire->setDescription($description);
+            $parent->setNom($nom);
+            $parent->setPrenom($prenom);
+            $parent->setNumero($numero);
+            $parent->setEmail($email);
 
-            $entityManager->persist($anneeScolaire);
+            $entityManager->persist($parent);
             $entityManager->flush();
 
             $this->addFlash(
                 'success',
-                "Vous avez modifié avec succes une annee. La nouvelle annee est " . $anneeScolaire->getAnnee() . " a ete ajouter avec succes"
+                'Le parent ' . $parent->getNom() . ' ' .  $parent->getPrenom() . " a ete modifier avec succes a la liste des parents"
             );
 
-            return $this->redirectToRoute('admin_annee_scolaire_liste');
+            return $this->redirectToRoute('admin_parent_liste');
         }
 
-        return $this->render('admin/annee_scolaire/creer.html.twig', [
+        return $this->render('admin/parent/editer.html.twig', [
             'form' => $form->createView(),
+            'parent' => $parent
         ]);
     }
 
-     /**
+    /**
      * @Route("/supprimer/{id}", name="supprimer")
      */
-    public function supprimer(EntityManagerInterface $entityManager, AnneeScolaire $anneeScolaire): Response
+    public function supprimer(EntityManagerInterface $entityManager, User $parent): Response
     {
 
-            $entityManager->remove($anneeScolaire);
-            $entityManager->flush();
+        $entityManager->remove($parent);
+        $entityManager->flush();
 
-            $this->addFlash(
-                'success',
-                "Annee scolaire supprimer avec succes"
-            );
+        $this->addFlash(
+            'success',
+            "Le parent a été supprimer avec succes"
+        );
 
-            return $this->redirectToRoute('admin_annee_scolaire_liste');
-
+        return $this->redirectToRoute('admin_parent_liste');
     }
 }
