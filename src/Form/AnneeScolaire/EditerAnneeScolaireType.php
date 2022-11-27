@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\AnneeScolaire;
 
 use App\Entity\AnneeScolaire;
 use Symfony\Component\Form\AbstractType;

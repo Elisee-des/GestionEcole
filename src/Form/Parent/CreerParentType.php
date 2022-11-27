@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Parent;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class CreerProfesseurType extends AbstractType
+class CreerParentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

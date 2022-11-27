@@ -3,9 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use App\Form\CreerParentType;
-use App\Form\EditerMotDePasseParentType;
-use App\Form\EditerParentType;
+use App\Form\Parent\CreerParentType;
+use App\Form\Parent\EditerMotDePasseParentType;
+use App\Form\Parent\EditerParentType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Id;

@@ -3,8 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\AnneeScolaire;
-use App\Form\AnneeScolaireType;
-use App\Form\EditerAnneeScolaireType;
+use App\Form\AnneeScolaire\AnneeScolaireType;
+use App\Form\AnneeScolaire\EditerAnneeScolaireType;
 use App\Repository\AnneeScolaireRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -93,8 +93,9 @@ class AnneeScolaireController extends AbstractController
             return $this->redirectToRoute('admin_annee_scolaire_liste');
         }
 
-        return $this->render('admin/annee_scolaire/creer.html.twig', [
+        return $this->render('admin/annee_scolaire/editer.html.twig', [
             'form' => $form->createView(),
+            'anneeScolaire' => $anneeScolaire
         ]);
     }
 

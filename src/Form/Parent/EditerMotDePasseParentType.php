@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Parent;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EditerMotDePasseProfesseurType extends AbstractType
+class EditerMotDePasseParentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

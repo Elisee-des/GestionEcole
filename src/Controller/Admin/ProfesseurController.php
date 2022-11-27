@@ -3,9 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use App\Form\CreerProfesseurType;
-use App\Form\EditerMotDePasseProfesseurType;
-use App\Form\EditerProfesseurType;
+use App\Form\Professeur\CreerProfesseurType;
+use App\Form\Professeur\EditerMotDePasseProfesseurType;
+use App\Form\Professeur\EditerProfesseurType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\Id;

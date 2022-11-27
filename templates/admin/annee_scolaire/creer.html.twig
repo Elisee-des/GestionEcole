@@ -1,19 +1,6 @@
-{% extends "base.admin.html.twig" %}
-
-{% block title %}
-    Creer une nouvelle annee scolaire
+{% block content_titre_modale %}
+Ajouter une année scolaire
 {% endblock %}
-
-{% block titre %}
-    Creer une nouvelle annee scolaire
-{% endblock %}
-
-{# {% block boutons %}{% endblock %} #}
-
-{% block body %}
-    <div class="card">
-        <div class="container"><br>
-            {{ form(form) }}
-        </div>
-    </div>
-{% endblock %}
+<form method="POST" action="{{ path("admin_annee_scolaire_creer") }}" >
+    {{ form_widget(form) }}
+</form>
