@@ -1,0 +1,7 @@
+
+{% block content_titre_modale %}
+Editer le professeur {{ professeur.nom }} {{ professeur.prenom }}
+{% endblock %}
+<form method="POST" action="{{ path("admin_professeur_editer", {id: professeur.id}) }}" >
+    {{ form_widget(form) }}
+</form>

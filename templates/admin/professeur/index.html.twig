@@ -1,0 +1,58 @@
+{% extends "base.admin.html.twig" %}
+
+{% block title %}
+	Gestion des Professeurs
+{% endblock %}
+
+{% block titre %}
+	Gestion des Professeurs
+{% endblock %}
+{% block boutons %}
+	<a href="{{ path("admin_professeur_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un professeur</a>
+{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="card-body">
+			<div class="content">
+				<table id="example" class="table table-striped nowrap" style="width:100%">
+					<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						{% for professeur in professeurs %}
+							{% if professeur.isProf == true %}
+								<tr>
+									<td>{{professeur.nom}}</td>
+									<td>
+										{{professeur.prenom}}</td>
+									<td>
+										<a
+											href="{{ path("admin_professeur_editer", {"id": professeur.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
+											{# <i class="mdi mdi-pencil"></i> #}
+											Editer
+										</a>
+
+										<a
+											href="{{ path("admin_professeur_detail", {"id": professeur.id}) }}" class="btn btn-info btn-outline-info">
+											{# <i class="mdi mdi-format-list-bulleted-square"></i> #}
+											Detail
+										</a>
+									</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
