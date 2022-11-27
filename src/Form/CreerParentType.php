@@ -34,7 +34,6 @@ class CreerParentType extends AbstractType
                 ],
                 "invalid_message" => "Mot de passe non identique",
                 "constraints" => [
-                    new Length(null, 4),
                     new NotBlank()
                 ]
             ])

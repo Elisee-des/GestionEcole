@@ -8,7 +8,7 @@
 	Gestion des Parents d'eleve
 {% endblock %}
 {% block boutons %}
-	<a href="{{ path("admin_parent_creer") }}" class="btn btn-inverse btn-outline-inverse float-right">Ajouter un parent</a>
+	<a href="{{ path("admin_parent_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un parent</a>
 {% endblock %}
 
 {% block body %}
@@ -31,7 +31,7 @@
 									{{parent.prenom}}</td>
 								<td>
 									<a
-										href="{{ path("admin_parent_editer", {"id": parent.id}) }}" class="btn btn-inverse btn-outline-inverse">
+										href="{{ path("admin_parent_editer", {"id": parent.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
 										{# <i class="mdi mdi-pencil"></i> #}
 										Editer
 									</a>

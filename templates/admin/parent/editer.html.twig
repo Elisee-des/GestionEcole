@@ -1,19 +1,7 @@
-{% extends "base.admin.html.twig" %}
 
-{% block title %}
-    Modifier les informations du {{ parent.nom }} {{ parent.prenom }}.
+{% block content_titre_modale %}
+Editer le parent d'eleve {{ parent.nom }} {{ parent.prenom }}
 {% endblock %}
-
-{% block titre %}
-    Modifier les informations du {{ parent.nom }} {{ parent.prenom }}.
-{% endblock %}
-
-{# {% block boutons %}{% endblock %} #}
-
-{% block body %}
-    <div class="card">
-        <div class="container"><br>
-            {{ form(form) }}
-        </div>
-    </div>
-{% endblock %}
+<form method="POST" action="{{ path("admin_parent_editer", {id: parent.id}) }}" >
+    {{ form_widget(form) }}
+</form>
