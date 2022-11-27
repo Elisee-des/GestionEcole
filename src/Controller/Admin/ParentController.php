@@ -4,9 +4,11 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Form\CreerParentType;
+use App\Form\EditerMotDePasseParentType;
 use App\Form\EditerParentType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -141,5 +143,37 @@ class ParentController extends AbstractController
         );
 
         return $this->redirectToRoute('admin_parent_liste');
+    }
+
+    /**
+     * @Route("/{id}/editer_mot_de_passe", name="editer_mot_de_passe")
+     */
+    public function editerMotDePasse(EntityManagerInterface $entityManagerInterface, Request $request, User $parent, UserPasswordHasherInterface  $passwordhasher): Response
+    {
+        $form = $this->createForm(EditerMotDePasseParentType::class, $parent);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $passwordShow = $request->get("editer_mot_de_passe_parent")["mdp"]["first"];
+            $password = $passwordhasher->hashPassword($parent, $passwordShow);
+
+            $parent->setPassword($password);
+
+            $entityManagerInterface->persist($parent);
+            $entityManagerInterface->flush();
+
+            $this->addFlash(
+                'success',
+                'Le mot de passe de ' . $parent->getNom() . " " . $parent->getPrenom() . ' a ete modifier avec succes'
+            );
+
+            return $this->redirectToRoute('admin_parent_detail', ["id" => $parent->getId()]);
+        }
+
+        return $this->render('admin/parent/editerMotDePasee.html.twig', [
+            "form" => $form->createView(),
+            "parent" => $parent
+        ]);
     }
 }

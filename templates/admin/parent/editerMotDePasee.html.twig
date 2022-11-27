@@ -1,0 +1,36 @@
+{% extends "base.admin.html.twig" %}
+
+{% block title %}
+	Modifier le mot de passe du parent d'eleve
+	{{ parent.nom }}
+	{{ parent.prenom }}
+{% endblock %}
+
+{% block titre %}
+	Modifier le mot de passe du parent d'eleve
+	{{ parent.nom }}
+	{{ parent.prenom }}
+{% endblock %}
+{% block boutons %}{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="container"><br>
+			{{ form(form) }}
+			</div>
+		</div>
+		<ul>
+			<a
+				href="{{ path("admin_parent_detail", {id: parent.id}) }}" class="btn btn-inverse btn-outline-inverse">
+				{# <i class="mdi mdi-pencil"></i> #}
+				Retour au detail
+			</a>
+			<a
+				href="{{ path("admin_parent_liste") }}" class="btn btn-inverse btn-outline-inverse">
+				{# <i class="mdi mdi-pencil"></i> #}
+				Retour a la liste des parents
+			</a>
+		</ul>
+	{% endblock %}
+
+	{% block javascripts %}{% endblock %}
