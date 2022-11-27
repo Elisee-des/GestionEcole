@@ -1,0 +1,53 @@
+{% extends "base.admin.html.twig" %}
+
+{% block title %}
+	Gestion des Parents d'eleve
+{% endblock %}
+
+{% block titre %}
+	Gestion des Parents d'eleve
+{% endblock %}
+{% block boutons %}
+	<a href="{{ path("admin_parent_creer") }}" class="btn btn-inverse btn-outline-inverse float-right">Ajouter un parent</a>
+{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="card-body">
+			<div class="content">
+				<table id="example" class="table table-striped nowrap" style="width:100%">
+					<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for parent in parents %}
+							<tr>
+								<td>{{parent.nom}}</td>
+								<td>
+									{{parent.prenom}}</td>
+								<td>
+									<a
+										href="{{ path("admin_parent_editer", {"id": parent.id}) }}" class="btn btn-inverse btn-outline-inverse">
+										{# <i class="mdi mdi-pencil"></i> #}
+										Editer
+									</a>
+									<a
+										href="{{ path("admin_parent_supprimer", {"id": parent.id}) }}" class="btn btn-danger btn-outline-danger" onclick="return confirm('Etes vous sur de vouloir supprimer cette annee scolaire ? Cette action est irreversible')" >
+										{# <i class="mdi mdi-format-list-bulleted-square"></i> #}
+										supprimer
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
