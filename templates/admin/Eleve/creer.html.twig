@@ -1,0 +1,7 @@
+
+{% block content_titre_modale %}
+Ajouter la classe
+{% endblock %}
+<form method="POST" action="{{ path("admin_classe_creer") }}" >
+    {{ form_widget(form) }}
+</form>

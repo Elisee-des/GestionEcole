@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\AnneeScolaire;
+use App\Entity\Annee;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<AnneeScolaire>
+ * @extends ServiceEntityRepository<Annee>
  *
- * @method AnneeScolaire|null find($id, $lockMode = null, $lockVersion = null)
- * @method AnneeScolaire|null findOneBy(array $criteria, array $orderBy = null)
- * @method AnneeScolaire[]    findAll()
- * @method AnneeScolaire[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Annee|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Annee|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Annee[]    findAll()
+ * @method Annee[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AnneeScolaireRepository extends ServiceEntityRepository
+class AnneeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, AnneeScolaire::class);
+        parent::__construct($registry, Annee::class);
     }
 
-    public function add(AnneeScolaire $entity, bool $flush = false): void
+    public function add(Annee $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AnneeScolaireRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(AnneeScolaire $entity, bool $flush = false): void
+    public function remove(Annee $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class AnneeScolaireRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return AnneeScolaire[] Returns an array of AnneeScolaire objects
+//     * @return Annee[] Returns an array of Annee objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class AnneeScolaireRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?AnneeScolaire
+//    public function findOneBySomeField($value): ?Annee
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

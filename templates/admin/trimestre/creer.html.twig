@@ -1,0 +1,12 @@
+
+{% block content_titre_modale %}
+Ajouter la trimestre
+{% endblock %}
+<form method="POST" action="{{ path("admin_trimestre_creer") }}" >
+    {{ form_widget(form) }}
+</form>
+<script>
+	$( '.select2' ).select2( {
+		theme: 'bootstrap-5'
+	} );
+</script>

@@ -30,12 +30,12 @@ class Eleve
     private $prenom;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $numero;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
 
@@ -45,7 +45,7 @@ class Eleve
     private $dateCreation;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $email;
 
@@ -61,12 +61,6 @@ class Eleve
     private $classe;
 
     /**
-     * @ORM\ManyToOne(targetEntity=AnneeScolaire::class, inversedBy="eleves")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $anneeScolaire;
-
-    /**
      * @ORM\OneToMany(targetEntity=Abscence::class, mappedBy="eleve", orphanRemoval=true)
      */
     private $abscences;
@@ -76,6 +70,12 @@ class Eleve
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Annee::class, inversedBy="eleves")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $annee;
 
     public function __construct()
     {
@@ -202,18 +202,6 @@ class Eleve
         return $this;
     }
 
-    public function getAnneeScolaire(): ?AnneeScolaire
-    {
-        return $this->anneeScolaire;
-    }
-
-    public function setAnneeScolaire(?AnneeScolaire $anneeScolaire): self
-    {
-        $this->anneeScolaire = $anneeScolaire;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Abscence>
      */
@@ -252,6 +240,18 @@ class Eleve
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getAnnee(): ?Annee
+    {
+        return $this->annee;
+    }
+
+    public function setAnnee(?Annee $annee): self
+    {
+        $this->annee = $annee;
 
         return $this;
     }

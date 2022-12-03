@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\AnneeScolaireRepository;
+use App\Repository\AnneeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AnneeScolaireRepository::class)
+ * @ORM\Entity(repositoryClass=AnneeRepository::class)
  */
-class AnneeScolaire
+class Annee
 {
     /**
      * @ORM\Id
@@ -20,22 +20,17 @@ class AnneeScolaire
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $annee;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
-    private $description;
+    private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=Trimestre::class, mappedBy="anneeScolaire", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Trimestre::class, mappedBy="annee", orphanRemoval=true)
      */
     private $trimestres;
 
     /**
-     * @ORM\OneToMany(targetEntity=Eleve::class, mappedBy="anneeScolaire", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Eleve::class, mappedBy="annee", orphanRemoval=true)
      */
     private $eleves;
 
@@ -45,31 +40,24 @@ class AnneeScolaire
         $this->eleves = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAnnee(): ?int
+    public function getNom(): ?string
     {
-        return $this->annee;
+        return $this->nom;
     }
 
-    public function setAnnee(int $annee): self
+    public function setNom(string $nom): self
     {
-        $this->annee = $annee;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
+        $this->nom = $nom;
 
         return $this;
     }
@@ -86,7 +74,7 @@ class AnneeScolaire
     {
         if (!$this->trimestres->contains($trimestre)) {
             $this->trimestres[] = $trimestre;
-            $trimestre->setAnneeScolaire($this);
+            $trimestre->setAnnee($this);
         }
 
         return $this;
@@ -96,8 +84,8 @@ class AnneeScolaire
     {
         if ($this->trimestres->removeElement($trimestre)) {
             // set the owning side to null (unless already changed)
-            if ($trimestre->getAnneeScolaire() === $this) {
-                $trimestre->setAnneeScolaire(null);
+            if ($trimestre->getAnnee() === $this) {
+                $trimestre->setAnnee(null);
             }
         }
 
@@ -116,7 +104,7 @@ class AnneeScolaire
     {
         if (!$this->eleves->contains($elefe)) {
             $this->eleves[] = $elefe;
-            $elefe->setAnneeScolaire($this);
+            $elefe->setAnnee($this);
         }
 
         return $this;
@@ -126,8 +114,8 @@ class AnneeScolaire
     {
         if ($this->eleves->removeElement($elefe)) {
             // set the owning side to null (unless already changed)
-            if ($elefe->getAnneeScolaire() === $this) {
-                $elefe->setAnneeScolaire(null);
+            if ($elefe->getAnnee() === $this) {
+                $elefe->setAnnee(null);
             }
         }
 

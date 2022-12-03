@@ -1,30 +1,34 @@
 <?php
 
-namespace App\Form\AnneeScolaire;
+namespace App\Form\Eleve;
 
-use App\Entity\AnneeScolaire;
+use App\Entity\Eleve;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EditerAnneeScolaireType extends AbstractType
+class CreerEleveType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('annee', NumberType::class)
-            ->add('description', TextareaType::class)
-            ->add('Modifier', SubmitType::class)
+            ->add('nom')
+            ->add('prenom')
+            ->add('numero')
+            ->add('photo')
+            ->add('email')
+            ->add('classe')
+            ->add('annee')
+            ->add('user')
+            ->add('Creer', SubmitType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => AnneeScolaire::class,
+            'data_class' => Eleve::class,
         ]);
     }
 }

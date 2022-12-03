@@ -89,6 +89,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->dateCreation = new \DateTime();
     }
 
+    public function __toString()
+    {
+        return $this->nom. " " . $this->prenom ;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

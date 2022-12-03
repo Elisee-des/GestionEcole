@@ -1,0 +1,58 @@
+{% extends "base.admin.html.twig" %}
+
+{% block title %}
+	Gestion des Trimestres
+{% endblock %}
+
+{% block titre %}
+	Gestion des Trimestres
+{% endblock %}
+{% block boutons %}
+	{# <a href="{{ path("admin_trimestre_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un trimestre</a> #}
+{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="card-body">
+			<div class="content">
+				<table id="example" class="table table-striped nowrap" style="width:100%">
+					<thead>
+						<tr>
+							<th>Annees</th>
+							{# <th>Trimestre</th> #}
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for  annee in annees %}
+							<tr>
+								<td>{{annee.nom}}</td>
+								<td>
+									{# <a
+										href="{{ path("admin_trimestre_editer", {"id": annee.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
+										<i class="mdi mdi-pencil"></i>
+										Editer
+									</a> #}
+
+									<a
+										href="{{ path("admin_trimestre_detail", {"id": annee.id}) }}" class="btn btn-info btn-outline-info">
+										{# <i class="mdi mdi-format-list-bulleted-square"></i> #}
+										Detail
+									</a>
+
+									{# <a
+										href="{{ path("admin_trimestre_editer", {"id": annee.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
+										<i class="mdi mdi-pencil"></i>
+										Trimestre
+									</a> #}
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

@@ -30,10 +30,10 @@ class Trimestre
     private $notes;
 
     /**
-     * @ORM\ManyToOne(targetEntity=AnneeScolaire::class, inversedBy="trimestres")
+     * @ORM\ManyToOne(targetEntity=Annee::class, inversedBy="trimestres")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $anneeScolaire;
+    private $annee;
 
     public function __construct()
     {
@@ -87,15 +87,16 @@ class Trimestre
         return $this;
     }
 
-    public function getAnneeScolaire(): ?AnneeScolaire
+    public function getAnnee(): ?Annee
     {
-        return $this->anneeScolaire;
+        return $this->annee;
     }
 
-    public function setAnneeScolaire(?AnneeScolaire $anneeScolaire): self
+    public function setAnnee(?Annee $annee): self
     {
-        $this->anneeScolaire = $anneeScolaire;
+        $this->annee = $annee;
 
         return $this;
     }
+
 }
