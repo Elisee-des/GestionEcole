@@ -1,14 +1,14 @@
 {% extends "base.admin.html.twig" %}
 
 {% block title %}
-	Gestion des trimestres
+	Gestion des trimestres de l'annee {{ annee.nom }}
 {% endblock %}
 
 {% block titre %}
-	Gestion des trimestres
+	Gestion des trimestres de l'annee {{ annee.nom }}
 {% endblock %}
 {% block boutons %}
-	{# <a href="{{ path("admin_trimestre_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un trimestre</a> #}
+	<a href="{{ path("admin_trimestre_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un trimestre</a>
 {% endblock %}
 
 {% block body %}
@@ -18,12 +18,12 @@
 				<table id="example" class="table table-striped nowrap" style="width:100%">
 					<thead>
 						<tr>
-							<th>Trimestre</th>
+							<th>Trimestres</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						{% for  trimestre in annees.trimestres %}
+						{% for  trimestre in trimestres %}
 							<tr>
 								<td>{{trimestre}}</td>
 								<td>
@@ -34,15 +34,9 @@
 									</a>
 
 									<a
-										href="{{ path("admin_trimestre_detail", {"id": trimestre.id}) }}" class="btn btn-info btn-outline-info">
+										href="{{ path("admin_trimestre_supprimer", {"id": trimestre.id}) }}" class="btn btn-danger btn-outline-danger" onclick="return confirm('Etes vous sur de vouloir supprimer cet Trimestre ? Cette action est irreversible')">
 										{# <i class="mdi mdi-format-list-bulleted-square"></i> #}
-										Detail
-									</a>
-
-									<a
-										href="{{ path("admin_trimestre_editer", {"id": trimestre.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
-										{# <i class="mdi mdi-pencil"></i> #}
-										Trimestre
+										Supprimer
 									</a>
 								</td>
 							</tr>

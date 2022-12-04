@@ -36,12 +36,12 @@ class TrimestreController extends AbstractController
     /**
      * @Route("/detail/{id}", name="detail")
      */
-    public function detail(AnneeRepository $anneeRepository): Response
+    public function detail(Annee $annee): Response
     {
-        $annees = $anneeRepository->findAll();
 
         return $this->render('admin/trimestre/detail.html.twig', [
-            'annees' => $annees,
+            'trimestres' => $annee->getTrimestres(),
+            'annee' => $annee
         ]);
     }
 
@@ -100,7 +100,7 @@ class TrimestreController extends AbstractController
                 "Vous avez modifié avec succes une trimestre. Le nouvelle trimestre est: " . $trimestre->getNom() . " a ete ajouter avec succes"
             );
 
-            return $this->redirectToRoute('admin_trimestre_liste');
+            return $this->redirectToRoute('admin_trimestre_detail', ["id"=>$trimestre->getAnnee()->getId()]);
         }
 
         return $this->render('admin/trimestre/editer.html.twig', [
@@ -123,6 +123,6 @@ class TrimestreController extends AbstractController
             "Trimestre supprimer avec succes"
         );
 
-        return $this->redirectToRoute('admin_trimestre_liste');
+        return $this->redirectToRoute('admin_trimestre_detail', ["id"=>$trimestre->getAnnee()->getId()]);
     }
 }
