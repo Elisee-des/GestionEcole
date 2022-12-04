@@ -15,6 +15,7 @@ class EditerClasseType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class)
+            ->add('annee')
             ->add('Modifier', SubmitType::class)
         ;
     }

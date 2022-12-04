@@ -34,10 +34,16 @@ class Annee
      */
     private $eleves;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Classe::class, mappedBy="annee")
+     */
+    private $classes;
+
     public function __construct()
     {
         $this->trimestres = new ArrayCollection();
         $this->eleves = new ArrayCollection();
+        $this->classes = new ArrayCollection();
     }
 
     public function __toString()
@@ -116,6 +122,36 @@ class Annee
             // set the owning side to null (unless already changed)
             if ($elefe->getAnnee() === $this) {
                 $elefe->setAnnee(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Classe>
+     */
+    public function getClasses(): Collection
+    {
+        return $this->classes;
+    }
+
+    public function addClass(Classe $class): self
+    {
+        if (!$this->classes->contains($class)) {
+            $this->classes[] = $class;
+            $class->setAnnee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClass(Classe $class): self
+    {
+        if ($this->classes->removeElement($class)) {
+            // set the owning side to null (unless already changed)
+            if ($class->getAnnee() === $this) {
+                $class->setAnnee(null);
             }
         }
 

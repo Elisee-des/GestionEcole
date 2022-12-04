@@ -15,6 +15,7 @@ class CreerClasseType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class)
+            ->add('annee')
             ->add('Creer', SubmitType::class)
         ;
     }

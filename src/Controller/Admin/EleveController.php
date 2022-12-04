@@ -2,9 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Annee;
+use App\Entity\Classe;
 use App\Entity\Eleve;
 use App\Form\Eleve\CreerEleveType;
 use App\Form\Eleve\EditerEleveType;
+use App\Repository\AnneeRepository;
 use App\Repository\EleveRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,24 +24,35 @@ class EleveController extends AbstractController
     /**
      * @Route("/", name="liste")
      */
-    public function index(EleveRepository $eleveRepository): Response
+    public function index(AnneeRepository $anneeRepository): Response
     {
-        $eleves = $eleveRepository->findAll();
+        $annees = $anneeRepository->findAll();
 
         return $this->render('admin/eleve/index.html.twig', [
-            'eleves' => $eleves,
+            'annees' => $annees,
         ]);
     }
 
     /**
-     * @Route("/detail/{id}", name="detail")
+     * @Route("/detail/{id}", name="annee_detail")
      */
-    public function detail(EleveRepository $eleveRepository): Response
+    public function detail(Annee $annee): Response
     {
-        $eleves = $eleveRepository->findAll();
 
         return $this->render('admin/eleve/detail.html.twig', [
-            'eleves' => $eleves,
+            'classes' => $annee->getClasses(),
+        ]);
+    }
+
+    /**
+     * @Route("/classe/{id}/detail", name="annee_classe_detail")
+     */
+    public function detail2(Classe $classe): Response
+    {
+
+        return $this->render('admin/eleve/detailClasse.html.twig', [
+            'eleves' => $classe->getEleves(),
+            'classe' => $classe
         ]);
     }
 
