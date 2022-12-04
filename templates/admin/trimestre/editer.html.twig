@@ -1,6 +1,6 @@
 
 {% block content_titre_modale %}
-Editer la trimestre {{ trimestre.nom }}
+Editer le trimestre {{ trimestre.nom }}
 {% endblock %}
 <form method="POST" action="{{ path("admin_trimestre_editer", {id: trimestre.id}) }}" >
     {{ form_widget(form) }}

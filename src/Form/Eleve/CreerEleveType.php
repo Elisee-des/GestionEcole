@@ -19,8 +19,8 @@ class CreerEleveType extends AbstractType
             ->add('photo')
             ->add('email')
             ->add('classe')
-            ->add('annee')
             ->add('user')
+            ->add('annee')
             ->add('Creer', SubmitType::class)
         ;
     }

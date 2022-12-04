@@ -25,7 +25,7 @@
 					<tbody>
 						{% for  trimestre in annees.trimestres %}
 							<tr>
-								<td>{{trimestre.nom}}</td>
+								<td>{{trimestre}}</td>
 								<td>
 									<a
 										href="{{ path("admin_trimestre_editer", {"id": trimestre.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">

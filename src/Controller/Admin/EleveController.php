@@ -3,9 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Eleve;
-use App\Repository\EleveRepository;
 use App\Form\Eleve\CreerEleveType;
 use App\Form\Eleve\EditerEleveType;
+use App\Repository\EleveRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,29 +31,46 @@ class EleveController extends AbstractController
     }
 
     /**
+     * @Route("/detail/{id}", name="detail")
+     */
+    public function detail(EleveRepository $eleveRepository): Response
+    {
+        $eleves = $eleveRepository->findAll();
+
+        return $this->render('admin/eleve/detail.html.twig', [
+            'eleves' => $eleves,
+        ]);
+    }
+
+    /**
      * @Route("/creer", name="creer")
      */
     public function creer(EntityManagerInterface $entityManager, Request $request): Response
     {
         $eleve = new Eleve();
-        
+
         $form = $this->createForm(CreerEleveType::class, $eleve);
-        
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // dd($eleve);
-            $elev = $request->get("creer_eleve")["nom"];
-            $elev = $request->get("creer_eleve")["nom"];
-            $elev = $request->get("creer_eleve")["nom"];
-            $elev = $request->get("creer_eleve")["nom"];
-            $elev = $request->get("creer_eleve")["nom"];
+            $nom = $request->get("creer_eleve")["nom"];
+            $prenom = $request->get("creer_eleve")["prenom"];
+            $numero = $request->get("creer_eleve")["numero"];
+            $photo = $request->get("creer_eleve")["photo"];
+            $email = $request->get("creer_eleve")["email"];
+            $classe = $eleve->getClasse();
+            $annee = $eleve->getAnnee();
+            $parent = $eleve->getUser();
 
-            $eleve->setNom($elev);
-            $eleve->setNom($elev);
-            $eleve->setNom($elev);
-            $eleve->setNom($elev);
-            $eleve->setNom($elev);
+            $eleve->setNom($nom);
+            $eleve->setPrenom($prenom);
+            $eleve->setNumero($numero);
+            $eleve->setPhoto($photo);
+            $eleve->setEmail($email);
+            $eleve->setAnnee($annee);
+            $eleve->setClasse($classe);
+            $eleve->setUser($parent);
 
             $entityManager->persist($eleve);
             $entityManager->flush();
@@ -106,7 +123,7 @@ class EleveController extends AbstractController
     /**
      * @Route("/supprimer/{id}", name="supprimer")
      */
-    public function supprimer(EntityManagerInterface $entityManager, Eleve $eleve): Response
+    public function supprimer(EntityManagerInterface $entityManager, eleve $eleve): Response
     {
 
         $entityManager->remove($eleve);
@@ -114,7 +131,7 @@ class EleveController extends AbstractController
 
         $this->addFlash(
             'success',
-            "Eleve supprimer avec succes"
+            "eleve supprimer avec succes"
         );
 
         return $this->redirectToRoute('admin_eleve_liste');

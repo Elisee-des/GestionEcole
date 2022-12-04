@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EleveRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -81,6 +82,7 @@ class Eleve
     {
         $this->notes = new ArrayCollection();
         $this->abscences = new ArrayCollection();
+        $this->dateCreation = new \DateTime();
     }
 
     public function getId(): ?int
