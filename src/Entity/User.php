@@ -82,6 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isSurveillant;
 
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
@@ -326,4 +327,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
 }

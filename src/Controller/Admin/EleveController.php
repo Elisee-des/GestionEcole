@@ -34,25 +34,38 @@ class EleveController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{id}", name="annee_detail")
+     * @Route("/annee/{id}", name="annee_detail")
      */
     public function detail(Annee $annee): Response
     {
 
-        return $this->render('admin/eleve/detail.html.twig', [
+        return $this->render('admin/eleve/detailAnnee.html.twig', [
             'classes' => $annee->getClasses(),
         ]);
     }
 
+
     /**
      * @Route("/classe/{id}/detail", name="annee_classe_detail")
      */
-    public function detail2(Classe $classe): Response
+    public function detailClasse(Classe $classe): Response
     {
 
         return $this->render('admin/eleve/detailClasse.html.twig', [
             'eleves' => $classe->getEleves(),
             'classe' => $classe
+        ]);
+    }
+
+    /**
+     * @Route("/detail/{id}", name="detail")
+     */
+    public function detailEleve(ELeve $eleve): Response
+    {
+
+        return $this->render('admin/eleve/detailEleve.html.twig', [
+            // 'eleves' => $classe->getEleves(),
+            'eleve' => $eleve
         ]);
     }
 
@@ -105,24 +118,37 @@ class EleveController extends AbstractController
     /**
      * @Route("/editer/{id}", name="editer")
      */
-    public function editer(EntityManagerInterface $entityManager, Request $request, eleve $eleve): Response
+    public function editer(EntityManagerInterface $entityManager, Request $request, Eleve $eleve): Response
     {
-
         $form = $this->createForm(EditerEleveType::class, $eleve);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $salle = $request->get("editer_eleve")["nom"];
+            $nom = $request->get("creer_eleve")["nom"];
+            $prenom = $request->get("creer_eleve")["prenom"];
+            $numero = $request->get("creer_eleve")["numero"];
+            $photo = $request->get("creer_eleve")["photo"];
+            $email = $request->get("creer_eleve")["email"];
+            $classe = $eleve->getClasse();
+            $annee = $eleve->getAnnee();
+            $parent = $eleve->getUser();
 
-            $eleve->setNom($salle);
+            $eleve->setNom($nom);
+            $eleve->setPrenom($prenom);
+            $eleve->setNumero($numero);
+            $eleve->setPhoto($photo);
+            $eleve->setEmail($email);
+            $eleve->setAnnee($annee);
+            $eleve->setClasse($classe);
+            $eleve->setUser($parent);
 
             $entityManager->persist($eleve);
             $entityManager->flush();
 
             $this->addFlash(
                 'success',
-                "Vous avez modifié avec succes une eleve. La nouvelle eleve est " . $eleve->getNom() . " a ete ajouter avec succes"
+                "Eleve " . $eleve->getNom() . " a ete modifier avec succes"
             );
 
             return $this->redirectToRoute('admin_eleve_liste');

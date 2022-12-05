@@ -4,6 +4,7 @@ namespace App\Form\Eleve;
 
 use App\Entity\Eleve;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,11 +17,11 @@ class EditerEleveType extends AbstractType
             ->add('prenom')
             ->add('numero')
             ->add('photo')
-            ->add('dateCreation')
             ->add('email')
             ->add('classe')
             ->add('user')
             ->add('annee')
+            ->add('Modifier', SubmitType::class)
         ;
     }
 

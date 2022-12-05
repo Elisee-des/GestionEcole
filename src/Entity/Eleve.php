@@ -36,11 +36,6 @@ class Eleve
     private $numero;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $photo;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $dateCreation;
@@ -122,18 +117,6 @@ class Eleve
     public function setNumero(string $numero): self
     {
         $this->numero = $numero;
-
-        return $this;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(string $photo): self
-    {
-        $this->photo = $photo;
 
         return $this;
     }
