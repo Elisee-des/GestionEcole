@@ -73,14 +73,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $eleves;
 
     /**
-     * @ORM\OneToMany(targetEntity=Matiere::class, mappedBy="user", orphanRemoval=true)
-     */
-    private $matieres;
-
-    /**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $isSurveillant;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Matiere::class, inversedBy="user", cascade={"persist", "remove"})
+     */
+    private $matiere;
 
 
     public function __construct()
@@ -294,28 +294,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->matieres;
     }
 
-    public function addMatiere(Matiere $matiere): self
-    {
-        if (!$this->matieres->contains($matiere)) {
-            $this->matieres[] = $matiere;
-            $matiere->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMatiere(Matiere $matiere): self
-    {
-        if ($this->matieres->removeElement($matiere)) {
-            // set the owning side to null (unless already changed)
-            if ($matiere->getUser() === $this) {
-                $matiere->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function isIsSurveillant(): ?bool
     {
         return $this->isSurveillant;
@@ -324,6 +302,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsSurveillant(?bool $isSurveillant): self
     {
         $this->isSurveillant = $isSurveillant;
+
+        return $this;
+    }
+
+    public function getMatiere(): ?Matiere
+    {
+        return $this->matiere;
+    }
+
+    public function setMatiere(?Matiere $matiere): self
+    {
+        $this->matiere = $matiere;
 
         return $this;
     }

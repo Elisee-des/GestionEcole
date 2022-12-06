@@ -30,16 +30,15 @@ class Matiere
     private $notes;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="matieres")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="matieres")
      * @ORM\JoinColumn(nullable=false)
      */
     private $classe;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="matiere", cascade={"persist", "remove"})
+     */
+    private $user;
 
     public function __construct()
     {
@@ -93,18 +92,6 @@ class Matiere
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function getClasse(): ?Classe
     {
         return $this->classe;
@@ -113,6 +100,28 @@ class Matiere
     public function setClasse(?Classe $classe): self
     {
         $this->classe = $classe;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setMatiere(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getMatiere() !== $this) {
+            $user->setMatiere($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }
