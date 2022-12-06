@@ -264,6 +264,6 @@ class EleveController extends AbstractController
             "eleve supprimer avec succes"
         );
 
-        return $this->redirectToRoute('admin_eleve_liste');
+        return $this->redirectToRoute('admin_eleve_annee_classe_detail', ["id" => $eleve->getClasse()->getId()]);
     }
 }
