@@ -1,0 +1,6 @@
+{% block content_titre_modale %}
+Editer l'eleve dans la classe de {{ eleve.nom }} {{ eleve.prenom }}
+{% endblock %}
+<form method="POST" action="{{ path("admin_eleve_editer_dans_eleve_detail", {id: eleve.id}) }}" >
+    {{ form_widget(form) }}
+</form>
