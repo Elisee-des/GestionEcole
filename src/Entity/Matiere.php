@@ -35,6 +35,12 @@ class Matiere
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="matieres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $classe;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();
@@ -95,6 +101,18 @@ class Matiere
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
 
         return $this;
     }

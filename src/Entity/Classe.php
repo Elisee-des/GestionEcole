@@ -34,9 +34,15 @@ class Classe
      */
     private $annee;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Matiere::class, mappedBy="classe", orphanRemoval=true)
+     */
+    private $matieres;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
+        $this->matieres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,6 +105,36 @@ class Classe
     public function setAnnee(?Annee $annee): self
     {
         $this->annee = $annee;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Matiere>
+     */
+    public function getMatieres(): Collection
+    {
+        return $this->matieres;
+    }
+
+    public function addMatiere(Matiere $matiere): self
+    {
+        if (!$this->matieres->contains($matiere)) {
+            $this->matieres[] = $matiere;
+            $matiere->setClasse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatiere(Matiere $matiere): self
+    {
+        if ($this->matieres->removeElement($matiere)) {
+            // set the owning side to null (unless already changed)
+            if ($matiere->getClasse() === $this) {
+                $matiere->setClasse(null);
+            }
+        }
 
         return $this;
     }
