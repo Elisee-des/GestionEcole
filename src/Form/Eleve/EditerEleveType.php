@@ -16,7 +16,6 @@ class EditerEleveType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('numero')
-            ->add('photo')
             ->add('email')
             ->add('classe')
             ->add('user')

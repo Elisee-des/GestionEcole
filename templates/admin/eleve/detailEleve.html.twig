@@ -12,7 +12,7 @@
 	{{ eleve.prenom }}
 {% endblock %}
 {% block boutons %}
-	<a href="{{ path("admin_eleve_supprimer", {id: eleve.id}) }}" class="mr-2 btn btn-danger btn-outline-danger btn-actions float-right"><i class="ti-trash"></i></a>
+	<a href="{{ path("admin_eleve_supprimer", {id: eleve.id}) }}" class="mr-2 btn btn-danger btn-outline-danger btn-actions float-right" onclick="return confirm('Voulez vous supprimer cet eleve?Les information rattacher a cet eleve seront supprimer par cette action.Contintuer ?')"><i class="ti-trash"></i></a>
 	<a href="{{ path("admin_eleve_editer", {id: eleve.id}) }}" class="mr-2 btn btn-primary btn-outline-primary btn-actions float-right"><i class="ti-pencil-alt"></i></a>
 	{# <a href="{{ path("admin_eleve_creer") }}" class="mr-2 btn btn-inverse btn-outline-inverse btn-actions float-right"><i class="ti-plus"></i></a> #}
 {% endblock %}

@@ -84,16 +84,13 @@ class EleveController extends AbstractController
             $nom = $request->get("creer_eleve")["nom"];
             $prenom = $request->get("creer_eleve")["prenom"];
             $numero = $request->get("creer_eleve")["numero"];
-            $photo = $request->get("creer_eleve")["photo"];
             $email = $request->get("creer_eleve")["email"];
             $classe = $eleve->getClasse();
             $annee = $eleve->getAnnee();
             $parent = $eleve->getUser();
-
             $eleve->setNom($nom);
             $eleve->setPrenom($prenom);
             $eleve->setNumero($numero);
-            $eleve->setPhoto($photo);
             $eleve->setEmail($email);
             $eleve->setAnnee($annee);
             $eleve->setClasse($classe);
@@ -113,6 +110,8 @@ class EleveController extends AbstractController
         return $this->render('admin/eleve/creer.html.twig', [
             'form' => $form->createView(),
         ]);
+
+        
     }
 
     /**
@@ -125,11 +124,11 @@ class EleveController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $nom = $request->get("creer_eleve")["nom"];
-            $prenom = $request->get("creer_eleve")["prenom"];
-            $numero = $request->get("creer_eleve")["numero"];
-            $photo = $request->get("creer_eleve")["photo"];
-            $email = $request->get("creer_eleve")["email"];
+            // dd($form);
+            $nom = $request->get("editer_eleve")["nom"];
+            $prenom = $request->get("editer_eleve")["prenom"];
+            $numero = $request->get("editer_eleve")["numero"];
+            $email = $request->get("editer_eleve")["email"];
             $classe = $eleve->getClasse();
             $annee = $eleve->getAnnee();
             $parent = $eleve->getUser();
@@ -137,7 +136,6 @@ class EleveController extends AbstractController
             $eleve->setNom($nom);
             $eleve->setPrenom($prenom);
             $eleve->setNumero($numero);
-            $eleve->setPhoto($photo);
             $eleve->setEmail($email);
             $eleve->setAnnee($annee);
             $eleve->setClasse($classe);
@@ -163,7 +161,7 @@ class EleveController extends AbstractController
     /**
      * @Route("/supprimer/{id}", name="supprimer")
      */
-    public function supprimer(EntityManagerInterface $entityManager, eleve $eleve): Response
+    public function supprimer(EntityManagerInterface $entityManager, Eleve $eleve): Response
     {
 
         $entityManager->remove($eleve);
