@@ -30,11 +30,6 @@ class Classe
     private $eleves;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Annee::class, inversedBy="classes")
-     */
-    private $annee;
-
-    /**
      * @ORM\OneToMany(targetEntity=Matiere::class, mappedBy="classe", orphanRemoval=true)
      */
     private $matieres;
@@ -95,18 +90,6 @@ class Classe
     public function __toString()
     {
         return $this->nom . " " . $this->annee;
-    }
-
-    public function getAnnee(): ?Annee
-    {
-        return $this->annee;
-    }
-
-    public function setAnnee(?Annee $annee): self
-    {
-        $this->annee = $annee;
-
-        return $this;
     }
 
     /**

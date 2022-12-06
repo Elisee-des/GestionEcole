@@ -1,0 +1,53 @@
+{% extends "base.admin.html.twig" %}
+
+{% block title %}
+    Detail de matiere
+	{{ annee.nom }}
+{% endblock %}
+
+{% block titre %}
+    Detail de matiere
+	{{ annee.nom }}
+{% endblock %}
+{% block boutons %}
+	{# <a href="{{ path("admin_matiere_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right"><i class="ti-plus"></a> #}
+{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="card-body">
+			<div class="content">
+				<table id="example" class="table table-striped nowrap" style="width:100%">
+					<thead>
+						<tr>
+							<th>Matiere</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for  matiere in matieres %}
+							<tr>
+								<td>{{matiere.nom}}</td>
+								<td>
+									<a href="{{ path("admin_eleve_editer", {"id": trimestre.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
+										Editer
+									</a>
+
+									<a href="{{ path("admin_eleve_annee_matiere_detail", {"id": matiere.id}) }}" class="btn btn-primary btn-outline-primary">
+										Voir les Eleves
+									</a>
+
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div>
+		<a href="{{ path("admin_matiere_liste") }}" class="mr-2 btn btn-inverse btn-outline-inverse float-left">
+			Retour a la liste des classe</i>
+	</a>
+	<br>
+</div>{% endblock %}{% block javascripts %}{% endblock %}
