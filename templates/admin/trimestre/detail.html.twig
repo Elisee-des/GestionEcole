@@ -1,14 +1,18 @@
 {% extends "base.admin.html.twig" %}
 
 {% block title %}
-	Gestion des trimestres de l'annee {{ annee.nom }}
+	Gestion des trimestres de l'annee
+	{{ annee.nom }}
 {% endblock %}
 
 {% block titre %}
-	Gestion des trimestres de l'annee {{ annee.nom }}
+	Gestion des trimestres de l'annee
+	{{ annee.nom }}
 {% endblock %}
 {% block boutons %}
-	{# <a href="{{ path("admin_trimestre_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un trimestre</a> #}
+	<a href="{{ path("admin_trimestre_creer", {id: annee.id}) }}" title="Cliquez pour Ajouter un trimestre" class="btn btn-inverse btn-outline-inverse btn-actions float-right">
+		<i class="ti-plus"></i>
+	</a>
 {% endblock %}
 
 {% block body %}
@@ -27,16 +31,12 @@
 							<tr>
 								<td>{{trimestre}}</td>
 								<td>
-									<a
-										href="{{ path("admin_trimestre_editer", {"id": trimestre.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
-										{# <i class="mdi mdi-pencil"></i> #}
-										Editer
+									<a href="{{ path("admin_trimestre_editer", {"id": trimestre.id}) }}" title="Cliquez pour editer ce trimestre" class="btn btn-inverse btn-actions btn-outline-inverse">
+										<i class="ti-marker-alt"></i>
 									</a>
 
-									<a
-										href="{{ path("admin_trimestre_supprimer", {"id": trimestre.id}) }}" class="btn btn-danger btn-outline-danger" onclick="return confirm('Etes vous sur de vouloir supprimer cet Trimestre ? Cette action est irreversible')">
-										{# <i class="mdi mdi-format-list-bulleted-square"></i> #}
-										Supprimer
+									<a href="{{ path("admin_trimestre_supprimer", {"id": trimestre.id}) }}" title="Cliquez pour Supprimer le trimestre" class="btn btn-danger btn-outline-danger" onclick="return confirm('Etes vous sur de vouloir supprimer cet Trimestre ? Cette action est irreversible')">
+										<i class="ti-trash"></i>
 									</a>
 								</td>
 							</tr>
@@ -46,6 +46,7 @@
 			</div>
 		</div>
 	</div>
-{% endblock %}
-
-{% block javascripts %}{% endblock %}
+	<a href="{{ path("admin_trimestre_annee") }}" class="mr-2 btn btn-inverse btn-outline-inverse float-left">
+		Retour a la liste des Annees</i>
+</a>
+<br>{% endblock %}{% block javascripts %}{% endblock %}

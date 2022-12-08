@@ -14,7 +14,6 @@ class EditerTrimestreType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('annee')
             ->add('Modifier', SubmitType::class)
         ;
     }

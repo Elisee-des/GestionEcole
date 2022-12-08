@@ -8,7 +8,7 @@
 	Gestion des Professeurs
 {% endblock %}
 {% block boutons %}
-	<a href="{{ path("admin_professeur_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un professeur</a>
+	<a href="{{ path("admin_professeur_creer") }}" title="Cliquez pour ajouter un professeur" class="btn btn-inverse btn-outline-inverse btn-actions float-right"><i class="ti-plus"></i></a>
 {% endblock %}
 
 {% block body %}
@@ -33,15 +33,13 @@
 										{{professeur.prenom}}</td>
 									<td>
 										<a
-											href="{{ path("admin_professeur_editer", {"id": professeur.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
-											{# <i class="mdi mdi-pencil"></i> #}
-											Editer
+											href="{{ path("admin_professeur_editer", {"id": professeur.id}) }}" title="Cliquez pour modifié les informations de cet professeur" class="btn btn-inverse btn-actions btn-outline-inverse">
+											<i class="ti-marker-alt"></i>
 										</a>
 
 										<a
-											href="{{ path("admin_professeur_detail", {"id": professeur.id}) }}" class="btn btn-info btn-outline-info">
-											{# <i class="mdi mdi-format-list-bulleted-square"></i> #}
-											Detail
+											href="{{ path("admin_professeur_detail", {"id": professeur.id}) }}" title="Cliquez pour consulter les details de ce parent" class="btn btn-info btn-outline-info">
+											<i class="ti-receipt"></i>
 										</a>
 									</td>
 								</tr>

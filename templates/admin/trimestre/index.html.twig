@@ -8,7 +8,7 @@
 	Gestion des Trimestres
 {% endblock %}
 {% block boutons %}
-	<a href="{{ path("admin_trimestre_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un trimestre</a>
+	{# <a href="{{ path("admin_trimestre_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un trimestre</a> #}
 {% endblock %}
 
 {% block body %}
@@ -35,14 +35,12 @@
 									</a> #}
 
 									<a
-										href="{{ path("admin_trimestre_detail", {"id": annee.id}) }}" class="btn btn-info btn-outline-info">
-										{# <i class="mdi mdi-format-list-bulleted-square"></i> #}
+										href="{{ path("admin_trimestre_detail", {"id": annee.id}) }}" title="Cliquez pour voir les trimestres de chaque anneé" class="btn btn-info btn-outline-info">
 										Voir Trimestre
 									</a>
 
 									{# <a
 										href="{{ path("admin_trimestre_editer", {"id": annee.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
-										<i class="mdi mdi-pencil"></i>
 										Trimestre
 									</a> #}
 								</td>

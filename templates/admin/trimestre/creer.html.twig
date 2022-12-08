@@ -2,7 +2,7 @@
 {% block content_titre_modale %}
 Ajouter la trimestre
 {% endblock %}
-<form method="POST" action="{{ path("admin_trimestre_creer") }}" >
+<form method="POST" action="{{ path("admin_trimestre_creer", {id: annee.id}) }}" >
     {{ form_widget(form) }}
 </form>
 <script>

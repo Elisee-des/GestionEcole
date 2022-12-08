@@ -8,7 +8,7 @@
 	Gestion des Parents d'eleve
 {% endblock %}
 {% block boutons %}
-	<a href="{{ path("admin_parent_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un parent</a>
+	<a href="{{ path("admin_parent_creer") }}" title="Ajouter un parent d'eleve avant d'enregistre un eleve" class="btn btn-inverse btn-outline-inverse btn-actions float-right"><i class="ti-plus"></i></a>
 {% endblock %}
 
 {% block body %}
@@ -31,15 +31,13 @@
 									{{parent.prenom}}</td>
 								<td>
 									<a
-										href="{{ path("admin_parent_editer", {"id": parent.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
-										{# <i class="mdi mdi-pencil"></i> #}
-										Editer
+										href="{{ path("admin_parent_editer", {"id": parent.id}) }}" title="Cliquez pour modifié les informations de cet parent" class="btn btn-inverse btn-actions btn-outline-inverse">
+										<i class="ti-marker-alt"></i>
 									</a>
 
 									<a
-										href="{{ path("admin_parent_detail", {"id": parent.id}) }}" class="btn btn-info btn-outline-info" >
-										{# <i class="mdi mdi-format-list-bulleted-square"></i> #}
-										Detail
+										href="{{ path("admin_parent_detail", {"id": parent.id}) }}" title="Cliquez pour consulter les details de ce parent" class="btn btn-info btn-outline-info" >
+										<i class="ti-receipt"></i>
 									</a>
 								</td>
 							</tr>

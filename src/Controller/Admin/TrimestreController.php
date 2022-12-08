@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TrimestreController extends AbstractController
 {
     /**
-     * @Route("/", name="liste")
+     * @Route("/", name="annee")
      */
     public function index(AnneeRepository $anneeRepository): Response
     {
@@ -46,9 +46,9 @@ class TrimestreController extends AbstractController
     }
 
     /**
-     * @Route("/creer", name="creer")
+     * @Route("/creer/{id}", name="creer")
      */
-    public function creer(EntityManagerInterface $entityManager, Request $request): Response
+    public function creer(EntityManagerInterface $entityManager, Request $request, Annee $annee): Response
     {
         $trimestre = new Trimestre();
 
@@ -60,20 +60,22 @@ class TrimestreController extends AbstractController
             $salle = $request->get("creer_trimestre")["nom"];
 
             $trimestre->setNom($salle);
+            $trimestre->setAnnee($annee);
 
             $entityManager->persist($trimestre);
             $entityManager->flush();
 
             $this->addFlash(
                 'success',
-                " " . $trimestre->getNom() . " a ete ajouter avec succes"
+                "Le " . $trimestre->getNom() . " a ete ajouter avec succes"
             );
 
-            return $this->redirectToRoute('admin_trimestre_liste');
+            return $this->redirectToRoute('admin_trimestre_detail', ["id"=>$annee->getId()]);
         }
 
         return $this->render('admin/trimestre/creer.html.twig', [
             'form' => $form->createView(),
+            'annee' => $annee
         ]);
     }
 
@@ -88,9 +90,10 @@ class TrimestreController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $salle = $request->get("editer_trimestre")["nom"];
+            $nom = $request->get("editer_trimestre")["nom"];
 
-            $trimestre->setNom($salle);
+            $trimestre->setNom($nom);
+            $trimestre->setAnnee($trimestre->getAnnee());
 
             $entityManager->persist($trimestre);
             $entityManager->flush();
@@ -105,7 +108,8 @@ class TrimestreController extends AbstractController
 
         return $this->render('admin/trimestre/editer.html.twig', [
             'form' => $form->createView(),
-            'trimestre' => $trimestre
+            'trimestre' => $trimestre,
+            'annee' =>$trimestre->getAnnee()
         ]);
     }
 

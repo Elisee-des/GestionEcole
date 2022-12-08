@@ -14,7 +14,6 @@ class CreerTrimestreType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('annee')
             ->add('Creer', SubmitType::class)
         ;
     }

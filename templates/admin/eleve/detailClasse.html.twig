@@ -34,11 +34,11 @@
 								<td>{{eleve.nom}}</td>
 								<td>{{eleve.prenom}}</td>
 								<td>
-									<a href="{{ path("admin_eleve_editer", {"id": eleve.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
+									<a href="{{ path("admin_eleve_editer", {"id": eleve.id}) }}" title="Cliquez pour editer cette eleve" class="btn btn-inverse btn-actions btn-outline-inverse">
 										<i class="ti-marker-alt"></i>
 									</a>
 
-									<a href="{{ path("admin_eleve_detail", {"id": eleve.id}) }}" class="btn btn-primary btn-outline-primary">
+									<a href="{{ path("admin_eleve_detail", {"id": eleve.id}) }}" title="Cliquez pour voir les details de ce eleve" class="btn btn-primary btn-outline-primary">
 										<i class="ti-receipt"></i>
 									</a>
 								</td>
