@@ -49,6 +49,19 @@ class ClasseController extends AbstractController
     }
 
     /**
+     * @Route("/listeDesEleve/{id}", name="liste_des_eleves")
+     */
+    public function listeEleve(Classe $classe): Response
+    {
+        // $annees = $anneeRepository->findAll();
+
+        return $this->render('admin/classe/listeEleves.html.twig', [
+            'eleves' => $classe->getEleves(),
+            'classe' => $classe
+        ]);
+    }
+
+    /**
      * @Route("/creer", name="creer")
      */
     public function creer(EntityManagerInterface $entityManager, Request $request): Response
@@ -105,7 +118,7 @@ class ClasseController extends AbstractController
                 "Classe " . $classe->getNom() . " a ete ajouter avec succes"
             );
 
-            return $this->redirectToRoute('admin_classe_liste_des_classes', ["id"=>$classe->getId()]);
+            return $this->redirectToRoute('admin_classe_liste_des_classes', ["id" => $annee->getId()]);
         }
 
         return $this->render('admin/classe/creerClasseListe.html.twig', [
@@ -134,13 +147,13 @@ class ClasseController extends AbstractController
 
             $this->addFlash(
                 'success',
-                "classe " . $classe->getNom() . " a ete ajouter avec succes"
+                "Classe " . $classe->getNom() . " a ete modifié avec succes"
             );
 
-            return $this->redirectToRoute('admin_classe_liste_des_classes', ["id"=>$classe->getId()]);
+            return $this->redirectToRoute('admin_classe_liste_des_classes', ["id" => $classe->getAnnee()->getId()]);
         }
 
-        return $this->render('admin/classe/editerClasseListe.html.twig', [
+        return $this->render('admin/classe/editerClasse.html.twig', [
             'form' => $form->createView(),
             'classe' => $classe
         ]);
@@ -218,13 +231,18 @@ class ClasseController extends AbstractController
      */
     public function supprimer(EntityManagerInterface $entityManager, Classe $classe): Response
     {
+        if (!$classe) {
+            throw $this->createNotFoundException(
+                "Cette classe n'existe pas"
+            );
+        }
 
         $entityManager->remove($classe);
         $entityManager->flush();
 
         $this->addFlash(
             'success',
-            "classe supprimer avec succes"
+            "Classe supprimer avec succes"
         );
 
         return $this->redirectToRoute('admin_classe_liste');

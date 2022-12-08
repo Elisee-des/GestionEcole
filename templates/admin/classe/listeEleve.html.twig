@@ -1,16 +1,16 @@
 {% extends "base.admin.html.twig" %}
 
 {% block title %}
-	Liste des classes de l'annee
+	Liste des eleves de la classe de {{ claase.nom }}
 	{{ annee.nom }}
 {% endblock %}
 
 {% block titre %}
-	Liste des classes de l'annee
+	Liste des eleves de la classe de {{ claase.nom }}
 	{{ annee.nom }}
 {% endblock %}
 {% block boutons %}
-	<a href="{{ path("admin_classe_creer_classe_dans_liste", {id: annee.id}) }}" title="Ajouter ici une classe" class="btn btn-inverse btn-outline-inverse btn-actions float-right">
+	<a href="{{ path("admin_classe_creer_classe_dans_liste", {id: annee.id}) }}" title="Ajouter un eleve a cette classe" class="btn btn-inverse btn-outline-inverse btn-actions float-right">
 		<i class="ti-plus"></i>
 	</a>
 {% endblock %}
@@ -22,22 +22,24 @@
 				<table id="example" class="table table-striped nowrap" style="width:100%">
 					<thead>
 						<tr>
-							<th>Classe</th>
-							<th>Actions</th>
+							<th>Nom</th>
+							<th>Prenom</th>
+							{# <th>Actions</th> #}
 						</tr>
 					</thead>
 					<tbody>
-						{% for classe in classes %}
+						{% for eleve in eleves %}
 							<tr>
-								<td>{{classe.nom}}</td>
-								<td>
+								<td>{{eleve.nom}}</td>
+								<td>{{eleve.prenom}}</td>
+								{# <td>
 									<a href="{{ path("admin_classe_editer_classe_dans_liste", {"id": classe.id}) }}" title="Modifier les informations cette classe" class="btn btn-inverse btn-actions btn-outline-inverse">
 										<i class="ti-marker-alt"></i>
 									</a>
 									<a href="{{ path("admin_classe_liste_des_eleves", {"id": classe.id}) }}" title="Voir les eleves de cette classe" class="btn btn-primary btn-outline-primary">
 										<i class="ti-receipt"></i>
 									</a>
-								</td>
+								</td> #}
 							</tr>
 						{% endfor %}
 					</tbody>
@@ -45,7 +47,7 @@
 			</div>
 		</div>
 	</div>
-	<a href="{{ path("admin_classe_annee") }}" class="mr-2 btn btn-inverse btn-outline-inverse float-left">
-		Retour a la liste des Anneés
+	<a href="{{ path("admin_classe_liste_des_classes", {id: classe.id}) }}" class="mr-2 btn btn-inverse btn-outline-inverse float-left">
+		Retour a la liste des classes
 </a>
 <br>{% endblock %}{% block javascripts %}{% endblock %}

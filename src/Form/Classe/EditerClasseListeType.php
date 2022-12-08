@@ -14,7 +14,7 @@ class EditerClasseListeType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('Creer', SubmitType::class)
+            ->add('Modifier', SubmitType::class)
         ;
     }
 
