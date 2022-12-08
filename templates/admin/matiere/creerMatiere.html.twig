@@ -1,0 +1,6 @@
+{% block content_titre_modale %}
+	Ajouter une matiere
+{% endblock %}
+<form method="POST" action="{{ path("admin_matiere_creer_matiere", {id: classe.id}) }}">
+	{{ form_widget(form) }}
+</form>

@@ -24,7 +24,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MatiereController extends AbstractController
 {
     /**
-     * @Route("/", name="liste")
+     * @Route("/", name="annee")
      */
     public function index(AnneeRepository $anneeRepository): Response
     {
@@ -36,51 +36,97 @@ class MatiereController extends AbstractController
     }
 
     /**
-     * @Route("/detail/{id}", name="annee_detail")
+     * @Route("/detail/{id}", name="liste_classe")
      */
-    public function annee(Annee $annee): Response
+    public function listeClasse(Annee $annee): Response
     {
         // dd($annee);
         // $annees = $anneeRepository->findAll();
 
-        return $this->render('admin/matiere/detailAnnee.html.twig', [
+        return $this->render('admin/matiere/listeClasse.html.twig', [
             'classes' => $annee->getClasses(),
-            'classeFontionAnnee' => $annee
+            'annee' => $annee
         ]);
     }
 
-    // /**
-    //  * @Route("/creerPourMatiere/{id}", name="creer_classe")
-    //  */
-    // public function creerPourMatiere(EntityManagerInterface $entityManager, Request $request): Response
-    // {
-    //     $classe = new Classe();
+    /**
+     * @Route("/liste/matiere/{id}", name="liste_matiere")
+     */
+    public function listeMatiere(Classe $classe): Response
+    {
 
-    //     $form = $this->createForm(CreerClasseType::class, $classe);
+        return $this->render('admin/matiere/listeMatiere.html.twig', [
+            'matieres' => $classe->getMatieres(),
+            'classe' => $classe
+        ]);
+    }
 
-    //     $form->handleRequest($request);
+    /**
+     * @Route("/creer/{id}", name="creer_matiere")
+     */
+    public function creerPourMatiere(EntityManagerInterface $entityManager, Request $request, Classe $classe): Response
+    {
+        $matiere = new Matiere();
 
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $nom = $request->get("creer_classe")["nom"];
+        $form = $this->createForm(CreerMatiereType::class, $matiere);
 
-    //         $classe->setNom($nom);
+        $form->handleRequest($request);
 
-    //         $entityManager->persist($classe);
-    //         $entityManager->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $nom = $request->get("creer_matiere")["nom"];
 
-    //         $this->addFlash(
-    //             'success',
-    //             "Classe " . $classe->getNom() . " a ete ajouter avec succes"
-    //         );
+            $matiere->setNom($nom);
+            $matiere->setClasse($classe);
 
-    //         return $this->redirectToRoute('admin_matiere_liste');
-    //     }
+            $entityManager->persist($matiere);
+            $entityManager->flush();
 
-    //     return $this->render('admin/matiere/creerClasse.html.twig', [
-    //         'form' => $form->createView(),
-    //         'annee' => $classe->getAnnee()
-    //     ]);
-    // }
+            $this->addFlash(
+                'success',
+                "La matiere " . $matiere->getNom() . " a ete ajouter avec succes"
+            );
+
+            return $this->redirectToRoute('admin_matiere_liste_matiere', ["id" => $classe->getId()]);
+        }
+
+        return $this->render('admin/matiere/creerMatiere.html.twig', [
+            'form' => $form->createView(),
+            'classe' => $classe
+        ]);
+    }
+
+    /**
+     * @Route("/editer/{id}", name="editer_matiere")
+     */
+    public function editerPourMatiere(EntityManagerInterface $entityManager, Request $request, Matiere $matiere): Response
+    {
+
+        $form = $this->createForm(EditerMatiereType::class, $matiere);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $nom = $request->get("editer_matiere")["nom"];
+
+            $matiere->setNom($nom);
+            $matiere->setClasse($matiere->getClasse());
+
+            $entityManager->persist($matiere);
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                "La matiere " . $matiere->getNom() . " a ete modifié avec succes"
+            );
+
+            return $this->redirectToRoute('admin_matiere_liste_matiere', ["id" => $matiere->getClasse()->getId()]);
+        }
+
+        return $this->render('admin/matiere/editerMatiere.html.twig', [
+            'form' => $form->createView(),
+            'matiere' => $matiere
+        ]);
+    }
 
     // /**
     //  * @Route("/detail/{id}", name="detail")
