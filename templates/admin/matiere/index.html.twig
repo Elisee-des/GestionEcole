@@ -1,14 +1,14 @@
 {% extends "base.admin.html.twig" %}
 
 {% block title %}
-	Gestion des matieres
+	Gestion des matieres par annee puis par classe
 {% endblock %}
 
 {% block titre %}
-	Gestion des matieres
+	Gestion des matieres par annee puis par classe
 {% endblock %}
 {% block boutons %}
-	<a href="{{ path("admin_matiere_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un matiere</a>
+	{# <a href="{{ path("admin_annee_creer") }}" title="Ajouter une annee dans une annee" class="btn btn-inverse btn-outline-inverse btn-actions float-right"><i class="ti-plus"></i></a> #}
 {% endblock %}
 
 {% block body %}
@@ -18,24 +18,22 @@
 				<table id="example" class="table table-striped nowrap" style="width:100%">
 					<thead>
 						<tr>
-							<th>Nom</th>
+							<th>Annee</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						{% for matiere in matieres %}
+						{% for annee in annees %}
 							<tr>
-								<td>{{matiere.nom}}</td>
+								<td>{{annee.nom}}</td>
 								<td>
+									{# <a
+										href="{{ path("admin_annee_editer", {"id": annee.id}) }}" title="Editer cette annee" class="btn btn-inverse btn-actions btn-outline-inverse">
+										<i class="ti-pencil-alt"></i>
+									</a> #}
 									<a
-										href="{{ path("admin_matiere_editer", {"id": matiere.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
-										{# <i class="mdi mdi-pencil"></i> #}
-										Editer
-									</a>
-									<a
-										href="{{ path("admin_matiere_detail", {"id": matiere.id}) }}" class="btn btn-info btn-outline-info" >
-										{# <i class="mdi mdi-format-list-bulleted-square"></i> #}
-										Detail
+										href="{{ path("admin_matiere_annee_detail", {"id": annee.id}) }}" title="Ouvrir le detail de cette annee" class="btn btn-info btn-outline-info" >
+										
 									</a>
 								</td>
 							</tr>

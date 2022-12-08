@@ -34,6 +34,11 @@ class Classe
      */
     private $matieres;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Annee::class, inversedBy="classes")
+     */
+    private $annee;
+
     public function __construct()
     {
         $this->eleves = new ArrayCollection();
@@ -89,7 +94,7 @@ class Classe
 
     public function __toString()
     {
-        return $this->nom . " " . $this->annee;
+        return $this->nom;
     }
 
     /**
@@ -121,4 +126,17 @@ class Classe
 
         return $this;
     }
+
+    public function getAnnee(): ?Annee
+    {
+        return $this->annee;
+    }
+
+    public function setAnnee(?Annee $annee): self
+    {
+        $this->annee = $annee;
+
+        return $this;
+    }
+
 }

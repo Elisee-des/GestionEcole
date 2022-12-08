@@ -2,9 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Annee;
 use App\Entity\Classe;
+use App\Form\Classe\CreerClasseMatiereType;
 use App\Form\Classe\CreerClasseType;
 use App\Form\Classe\EditerClasseType;
+use App\Repository\AnneeRepository;
 use App\Repository\ClasseRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,12 +24,25 @@ class ClasseController extends AbstractController
     /**
      * @Route("/", name="liste")
      */
-    public function index(ClasseRepository $ClasseRepository): Response
+    public function index(AnneeRepository $anneeRepository): Response
     {
-        $Classes = $ClasseRepository->findAll();
+        $annees = $anneeRepository->findAll();
 
         return $this->render('admin/classe/index.html.twig', [
-            'classes' => $Classes,
+            'annees' => $annees,
+        ]);
+    }
+
+    /**
+     * @Route("/listeDesClasse/{id}", name="liste_des_classes")
+     */
+    public function listeClasse(Annee $annee): Response
+    {
+        // $annees = $anneeRepository->findAll();
+
+        return $this->render('admin/classe/listeClasse.html.twig', [
+            'classes' => $annee->getClasses(),
+            'annee' => $annee
         ]);
     }
 
@@ -59,6 +75,40 @@ class ClasseController extends AbstractController
 
         return $this->render('admin/classe/creer.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/creerPourMatiere/{id}", name="creer_pour_matiere")
+     */
+    public function creerPourMatiere(EntityManagerInterface $entityManager, Request $request, Annee $annee): Response
+    {
+        $classe = new Classe();
+
+        $form = $this->createForm(CreerClasseMatiereType::class, $classe);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $nom = $request->get("creer_classe")["nom"];
+
+            $classe->setNom($nom);
+            $classe->setAnnee($annee);
+
+            $entityManager->persist($classe);
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                "classe " . $classe->getNom() . " a ete ajouter avec succes"
+            );
+
+            return $this->redirectToRoute('admin_classe_liste');
+        }
+
+        return $this->render('admin/classe/creer.html.twig', [
+            'form' => $form->createView(),
+            // 'classe' => $classe
         ]);
     }
 

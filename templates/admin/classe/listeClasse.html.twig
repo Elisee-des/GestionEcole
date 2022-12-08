@@ -1,11 +1,11 @@
 {% extends "base.admin.html.twig" %}
 
 {% block title %}
-	Gestion des Classes par anneé
+	Liste de classe de l'annee {{ annee.nom }}
 {% endblock %}
 
 {% block titre %}
-	Gestion des Classes par anneé
+	Liste de classe de l'annee {{ annee.nom }}
 {% endblock %}
 {% block boutons %}
 	<a href="{{ path("admin_classe_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right">Ajouter un classe</a>
@@ -18,21 +18,21 @@
 				<table id="example" class="table table-striped nowrap" style="width:100%">
 					<thead>
 						<tr>
-							<th>Nom</th>
+							<th>Classe</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						{% for annee in annees %}
+						{% for classe in classes %}
 							<tr>
-								<td>{{annee.nom}}</td>
+								<td>{{classe.nom}}</td>
 								<td>
 									{# <a
 										href="{{ path("admin_classe_editer", {"id": classe.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
 										Editer
 									</a> #}
 									<a
-										href="{{ path("admin_classe_liste_des_classes", {"id": annee.id}) }}" title="Voir les classes de cette anneé" class="btn btn-info btn-outline-info" >
+										href="{{ path("admin_classe_editer", {"id": annee.id}) }}" title="Voir les classes de cette anneé" class="btn btn-info btn-outline-info" >
 										<i class="ti-receipt"></i>
 									</a>
 								</td>

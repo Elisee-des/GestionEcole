@@ -16,10 +16,11 @@ class CreerMatiereType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('classe', EntityType::class, [
-                "class" => Classe::class,
-                "label" => "Choisir la classe a laquel est rattacher cette matiere"
-            ])
+            // ->add('classe', EntityType::class, [
+            //     "class" => Classe::class,
+            //     "label" => "Choisir la classe a laquel est rattacher cette matiere",
+            //     "attr"=>["class"=>"select2"]
+            // ])
             ->add('Creer', SubmitType::class)
         ;
     }
