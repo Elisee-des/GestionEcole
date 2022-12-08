@@ -1,0 +1,134 @@
+{% extends "base.admin.html.twig" %}
+
+{% block title %}
+	Liste des notes de la classe de {{ matiere.nom }}
+{% endblock %}
+
+{% block titre %}
+	Liste des notes de la classe de {{ matiere.nom }}
+{% endblock %}
+{% block boutons %}
+	<a href="{{ path("admin_matiere_supprimer", {id: matiere.id}) }}" title="Cliquez pour supprimer cette matiere" class="mr-2 btn btn-danger btn-outline-danger float-right" onclick="return confirm('Voulez vous supprimer cet Matiere?Les notes de cette matiere seront supprimer par cette action.Voulez-vous contintuer ?')">
+		<i class="ti-trash"></i>
+	</a>
+	<a href="{{ path("admin_matiere_editer_matiere", {id: matiere.id}) }}" title="Cliquez pour editer le nom de cette matiere" class="mr-2 btn btn-primary btn-outline-primary btn-actions float-right">
+		<i class="ti-pencil-alt"></i>
+	</a>
+	{# <a href="{{ path("admin_eleve_creer") }}" class="mr-2 btn btn-inverse btn-outline-inverse btn-actions float-right"><i class="ti-plus"></i></a> #}
+{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="card-block tab-icon">
+			<div class="content">
+				{# <div class="row">
+					<div class="row">
+						<div
+							class="col-lg-12 col-xl-6">
+							<!-- <h6 class="sub-title">Tab With Icon</h6> -->
+							<div class="sub-title">Information detailé</div>
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs md-tabs " role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active" data-toggle="tab" href="#note" role="tab">
+										<i class="ti-layout-list-post"></i>Note</a>
+									<div class="slide"></div>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#profile" role="tab">
+										<i class="icofont icofont-ui-user "></i>Profile</a>
+									<div class="slide"></div>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#parent" role="tab">
+										<i class="ti-user"></i>Parent</a>
+									<div class="slide"></div>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#professeur" role="tab">
+										<i class="ti-id-badge"></i>Professeur</a>
+									<div class="slide"></div>
+								</li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content card-block">
+								<div class="tab-pane active" id="note" role="tabpanel">
+									<p class="m-0">1. This is Photoshop's version of Lorem IpThis is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean mas Cum sociis natoque penatibus et magnis dis.....</p>
+								</div>
+								<div class="tab-pane" id="profile" role="tabpanel">
+									<h5><strong>Nom</strong>: {{ eleve.nom }}</h5><hr><br>
+									<h5><strong>Prenom</strong>: {{ eleve.prenom }}</h5><hr><br>
+									<h5><strong>Numéro</strong>: {{ eleve.numero }}</h5><hr><br>
+									<h5><strong>Email</strong>: {{ eleve.email }}</h5><hr><br>
+								</div>
+								<div class="tab-pane" id="parent" role="tabpanel">
+									<h5><strong>Nom du Parent</strong>: {{ eleve.user.nom }}</h5><hr><br>
+									<h5><strong>Prenom du Parent</strong>: {{ eleve.user.prenom }}</h5><hr><br>
+								</div>
+								<div class="tab-pane" id="professeur" role="tabpanel">
+									<h5><strong>Nom</strong>: </h5><hr><br>
+									<h5><strong>Prenom</strong>: </h5><hr><br>
+									<h5><strong>Numero</strong>: </h5><hr><br>
+									<h5><strong>Email</strong>: </h5><hr><br>
+									<h5><strong>Matiere</strong>: </h5><hr><br>
+								</div>
+							</div>
+						</div>
+						<div
+							class="col-lg-12 col-xl-6">
+							<!-- <h6 class="sub-title">Tab With Icon</h6> -->
+							<div class="sub-title">Information detailé</div>
+							<!-- Nav tabs -->
+							<ul class="nav nav-tabs md-tabs " role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active" data-toggle="tab" href="#classe" role="tab">
+										<i class="ti-clipboard"></i>Classe</a>
+									<div class="slide"></div>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#payement" role="tab">
+										<i class="ti-money"></i>Payement</a>
+									<div class="slide"></div>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#performance" role="tab">
+										<i class="ti-stats-up"></i>Performance</a>
+									<div class="slide"></div>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#retard" role="tab">
+										<i class="ti-infinite"></i>Retard</a>
+									<div class="slide"></div>
+								</li>
+							</ul>
+							<!-- Tab panes -->
+							<div class="tab-content card-block">
+								<div class="tab-pane active" id="classe" role="tabpanel">
+									<h5><strong>Classe</strong>: {{ eleve.classe.nom }}</h5><hr><br>
+									<h5><strong>Nombre de classe de 6eme</strong>: </h5><hr><br>
+									<h5><strong>Nombre d'eleve dans la classe</strong>: </h5><hr><br>
+								</div>
+								<div class="tab-pane" id="payement" role="tabpanel">
+									<p class="m-0">2.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>
+								</div>
+								<div class="tab-pane" id="performance" role="tabpanel">
+									<p class="m-0">3. This is Photoshop's version of Lorem IpThis is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean mas Cum sociis natoque penatibus et magnis dis.....</p>
+								</div>
+								<div class="tab-pane" id="retard" role="tabpanel">
+									<p class="m-0">4.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div> #}
+
+			</div>
+		</div>
+	</div>
+	<div>
+		<a href="{{ path("admin_matiere_liste_matiere", {id: classe.id}) }}" class="mr-2 btn btn-inverse btn-outline-inverse float-left">
+			Retour a la liste des Matieres</i>
+	</a>
+	<br>
+</div>{% endblock %}{% block javascripts %}{% endblock %}

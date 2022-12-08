@@ -7,6 +7,7 @@ use App\Entity\Classe;
 use App\Entity\Matiere;
 use App\Form\Classe\CreerClasseType;
 use App\Form\Matiere\CreerMatiereType;
+use App\Form\Matiere\CreerType;
 use App\Form\Matiere\EditerMatiereType;
 use App\Repository\AnneeRepository;
 use App\Repository\ClasseRepository;
@@ -58,6 +59,18 @@ class MatiereController extends AbstractController
         return $this->render('admin/matiere/listeMatiere.html.twig', [
             'matieres' => $classe->getMatieres(),
             'classe' => $classe
+        ]);
+    }
+
+    /**
+     * @Route("/liste/notes/{id}", name="liste_notes")
+     */
+    public function detailMatiere(Matiere $matiere): Response
+    {
+
+        return $this->render('admin/matiere/notes/listeNotes.html.twig', [
+            'matiere' => $matiere,
+            'classe' => $matiere->getClasse()
         ]);
     }
 
@@ -119,12 +132,46 @@ class MatiereController extends AbstractController
                 "La matiere " . $matiere->getNom() . " a ete modifié avec succes"
             );
 
-            return $this->redirectToRoute('admin_matiere_liste_matiere', ["id" => $matiere->getClasse()->getId()]);
+            return $this->redirectToRoute('admin_matiere_liste_notes', ["id" => $matiere->getId()]);
         }
 
         return $this->render('admin/matiere/editerMatiere.html.twig', [
             'form' => $form->createView(),
             'matiere' => $matiere
+        ]);
+    }
+
+      /**
+     * @Route("/creer", name="creer_matiere")
+     */
+    public function creer(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $matiere = new Matiere();
+
+        $form = $this->createForm(CreerType::class, $matiere);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $nom = $request->get("creer")["nom"];
+
+            $matiere->setNom($nom);
+            $matiere->setClasse($matiere->getClasse());
+
+            $entityManager->persist($matiere);
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                "La matiere " . $matiere->getNom() . " a ete ajouter avec succes"
+            );
+
+            return $this->redirectToRoute('admin_matiere_annee');
+        }
+
+        return $this->render('admin/matiere/creer.html.twig', [
+            'form' => $form->createView(),
+            // 'classe' => $classe
         ]);
     }
 
@@ -143,7 +190,7 @@ class MatiereController extends AbstractController
     /**
      * @Route("/creer/{id}", name="creer")
      */
-    public function creer(EntityManagerInterface $entityManager, Request $request, Classe $classe): Response
+    public function creerMatiere(EntityManagerInterface $entityManager, Request $request, Classe $classe): Response
     {
         $matiere = new Matiere();
 
@@ -221,6 +268,6 @@ class MatiereController extends AbstractController
             "matiere supprimer avec succes"
         );
 
-        return $this->redirectToRoute('admin_matiere_liste');
+        return $this->redirectToRoute('admin_matiere_liste_matiere', ["id" => $matiere->getClasse()->getId()]);
     }
 }
