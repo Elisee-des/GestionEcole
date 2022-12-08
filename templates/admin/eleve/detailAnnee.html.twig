@@ -1,21 +1,25 @@
 {% extends "base.admin.html.twig" %}
 
 {% block title %}
-	Gestion des Classes de l'annee {{ annee.nom }}
+	Gestion des Classes de l'annee
+	{{ annee.nom }}
 {% endblock %}
 
 {% block titre %}
-	Gestion des Classes de l'annee {{ annee.nom }}
+	Gestion des Classes de l'annee
+	{{ annee.nom }}
 {% endblock %}
 {% block boutons %}
-	{# <a href="{{ path("admin_classe_creer") }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right"><i class="ti-plus"></a> #}
+	<a href="{{ path("admin_classe_annee") }}" title="Si vous souhaitez ajouter un classe, cliquez pour aller a la gestion des Classes" class="btn btn-inverse btn-outline-inverse float-right">
+		<i class="ti-control-shuffle"></i>
+	</a>
 {% endblock %}
 
 {% block body %}
 	<div class="card">
 		<div class="card-body">
 			<div class="content">
-				<table id="example" class="table table-striped nowrap" style="width:100%">
+				<table id="example" title="Cliquez pour voir la liste des Eleves de cette classe" class="table table-striped nowrap" style="width:100%">
 					<thead>
 						<tr>
 							<th>Classe</th>
@@ -28,18 +32,18 @@
 								<td>{{classe.nom}}</td>
 								<td>
 									{# <a
-																			href="{{ path("admin_eleve_editer", {"id": trimestre.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
-																			Editer
-																		</a> #}
+																												href="{{ path("admin_eleve_editer", {"id": trimestre.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
+																												Editer
+																											</a> #}
 
 									<a href="{{ path("admin_eleve_annee_classe_detail", {"id": classe.id}) }}" class="btn btn-primary btn-outline-primary">
 										Voir les Eleves
 									</a>
 
 									{# <a
-																			href="{{ path("admin_trimestre_editer", {"id": trimestre.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
-																			Trimestre
-																		</a> #}
+																												href="{{ path("admin_trimestre_editer", {"id": trimestre.id}) }}" class="btn btn-inverse btn-actions btn-outline-inverse">
+																												Trimestre
+																											</a> #}
 								</td>
 							</tr>
 						{% endfor %}
@@ -50,7 +54,9 @@
 	</div>
 	<div>
 		<a href="{{ path("admin_eleve_liste") }}" class="mr-2 btn btn-inverse btn-outline-inverse float-left">
-			Retour a la liste des annees</i>
-	</a>
-	<br>
-</div>{% endblock %}{% block javascripts %}{% endblock %}
+			Retour a la liste des annees
+		</a>
+		<br>
+	</div>
+{% endblock %}
+{% block javascripts %}{% endblock %}

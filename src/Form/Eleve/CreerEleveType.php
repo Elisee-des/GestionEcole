@@ -3,6 +3,8 @@
 namespace App\Form\Eleve;
 
 use App\Entity\Eleve;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,7 +20,10 @@ class CreerEleveType extends AbstractType
             ->add('numero')
             ->add('email')
             ->add('classe')
-            ->add('user')
+            ->add('user', EntityType::class, [
+                "class" => User::class,
+                "label" => "Le parent"
+            ])
             ->add('annee')
             ->add('Creer', SubmitType::class)
         ;

@@ -182,7 +182,7 @@ class ClasseController extends AbstractController
 
             $this->addFlash(
                 'success',
-                "classe " . $classe->getNom() . " a ete ajouter avec succes"
+                "Classe " . $classe->getNom() . " a ete ajouter avec succes"
             );
 
             return $this->redirectToRoute('admin_classe_liste');

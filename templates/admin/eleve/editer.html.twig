@@ -1,5 +1,5 @@
 {% block content_titre_modale %}
-Editer l'eleve {{ eleve.nom }}
+Editer l'eleve {{ eleve.nom }} {{ eleve.prenom }}
 
 {% endblock %}
 <form method="POST" action="{{ path("admin_eleve_editer", {id: eleve.id}) }}" >

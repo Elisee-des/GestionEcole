@@ -165,7 +165,7 @@ class EleveController extends AbstractController
     /**
      * @Route("/EditerDansEleveDetail/{id}", name="editer_dans_eleve_detail")
      */
-    public function creerDansDetailEleve(EntityManagerInterface $entityManager, Request $request, Eleve $eleve): Response
+    public function editerDansDetailEleve(EntityManagerInterface $entityManager, Request $request, Eleve $eleve): Response
     {
 
         $form = $this->createForm(EditerDansEleveDetailType::class, $eleve);
@@ -200,7 +200,7 @@ class EleveController extends AbstractController
             return $this->redirectToRoute('admin_eleve_detail', ["id" => $eleve->getId()]);
         }
 
-        return $this->render('admin/eleve/creerDansEleveDetail.html.twig', [
+        return $this->render('admin/eleve/editerDansEleveDetail.html.twig', [
             'form' => $form->createView(),
             'eleve' => $eleve
         ]);
