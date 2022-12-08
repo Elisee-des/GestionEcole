@@ -1,0 +1,7 @@
+
+{% block content_titre_modale %}
+Ajouter une classe a l'annee {{ annee.nom }}
+{% endblock %}
+<form method="POST" action="{{ path("admin_classe_creer_classe_dans_liste", {id: annee.id}) }}" >
+    {{ form_widget(form) }}
+</form>

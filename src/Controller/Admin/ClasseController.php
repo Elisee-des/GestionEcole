@@ -4,8 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Annee;
 use App\Entity\Classe;
+use App\Form\Classe\CreerClasseListeType;
 use App\Form\Classe\CreerClasseMatiereType;
 use App\Form\Classe\CreerClasseType;
+use App\Form\Classe\EditerClasseListeType;
 use App\Form\Classe\EditerClasseType;
 use App\Repository\AnneeRepository;
 use App\Repository\ClasseRepository;
@@ -22,7 +24,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ClasseController extends AbstractController
 {
     /**
-     * @Route("/", name="liste")
+     * @Route("/", name="annee")
      */
     public function index(AnneeRepository $anneeRepository): Response
     {
@@ -77,6 +79,73 @@ class ClasseController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/creer/{id}", name="creer_classe_dans_liste")
+     */
+    public function creerClasseListe(EntityManagerInterface $entityManager, Request $request, Annee $annee): Response
+    {
+        $classe = new Classe();
+
+        $form = $this->createForm(CreerClasseListeType::class, $classe);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $nom = $request->get("creer_classe_liste")["nom"];
+
+            $classe->setNom($nom);
+            $classe->setAnnee($annee);
+
+            $entityManager->persist($classe);
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                "Classe " . $classe->getNom() . " a ete ajouter avec succes"
+            );
+
+            return $this->redirectToRoute('admin_classe_liste_des_classes', ["id"=>$classe->getId()]);
+        }
+
+        return $this->render('admin/classe/creerClasseListe.html.twig', [
+            'form' => $form->createView(),
+            'annee' => $annee
+        ]);
+    }
+
+    /**
+     * @Route("/editer/{id}", name="editer_classe_dans_liste")
+     */
+    public function editerClasseListe(EntityManagerInterface $entityManager, Request $request, Classe $classe): Response
+    {
+        $form = $this->createForm(EditerClasseListeType::class, $classe);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $nom = $request->get("editer_classe_liste")["nom"];
+
+            $classe->setNom($nom);
+            $classe->setAnnee($classe->getAnnee());
+
+            $entityManager->persist($classe);
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                "classe " . $classe->getNom() . " a ete ajouter avec succes"
+            );
+
+            return $this->redirectToRoute('admin_classe_liste_des_classes', ["id"=>$classe->getId()]);
+        }
+
+        return $this->render('admin/classe/editerClasseListe.html.twig', [
+            'form' => $form->createView(),
+            'classe' => $classe
+        ]);
+    }
+
 
     /**
      * @Route("/creerPourMatiere/{id}", name="creer_pour_matiere")
