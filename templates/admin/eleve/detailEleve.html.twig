@@ -60,21 +60,43 @@
 									<p class="m-0">1. This is Photoshop's version of Lorem IpThis is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean mas Cum sociis natoque penatibus et magnis dis.....</p>
 								</div>
 								<div class="tab-pane" id="profile" role="tabpanel">
-									<h5><strong>Nom</strong>: {{ eleve.nom }}</h5><hr><br>
-									<h5><strong>Prenom</strong>: {{ eleve.prenom }}</h5><hr><br>
-									<h5><strong>Numéro</strong>: {{ eleve.numero }}</h5><hr><br>
-									<h5><strong>Email</strong>: {{ eleve.email }}</h5><hr><br>
+									<h5>
+										<strong>Nom</strong>:
+										{{ eleve.nom }}</h5><hr><br>
+									<h5>
+										<strong>Prenom</strong>:
+										{{ eleve.prenom }}</h5><hr><br>
+									<h5>
+										<strong>Numéro</strong>:
+										{{ eleve.numero }}</h5><hr><br>
+									<h5>
+										<strong>Email</strong>:
+										{{ eleve.email }}</h5><hr><br>
 								</div>
 								<div class="tab-pane" id="parent" role="tabpanel">
-									<h5><strong>Nom du Parent</strong>: {{ eleve.user.nom }}</h5><hr><br>
-									<h5><strong>Prenom du Parent</strong>: {{ eleve.user.prenom }}</h5><hr><br>
+									<h5>
+										<strong>Nom du Parent</strong>:
+										{{ eleve.user.nom }}</h5><hr><br>
+									<h5>
+										<strong>Prenom du Parent</strong>:
+										{{ eleve.user.prenom }}</h5><hr><br>
 								</div>
 								<div class="tab-pane" id="professeur" role="tabpanel">
-									<h5><strong>Nom</strong>: </h5><hr><br>
-									<h5><strong>Prenom</strong>: </h5><hr><br>
-									<h5><strong>Numero</strong>: </h5><hr><br>
-									<h5><strong>Email</strong>: </h5><hr><br>
-									<h5><strong>Matiere</strong>: </h5><hr><br>
+									<h5>
+										<strong>Nom</strong>:
+									</h5><hr><br>
+									<h5>
+										<strong>Prenom</strong>:
+									</h5><hr><br>
+									<h5>
+										<strong>Numero</strong>:
+									</h5><hr><br>
+									<h5>
+										<strong>Email</strong>:
+									</h5><hr><br>
+									<h5>
+										<strong>Matiere</strong>:
+									</h5><hr><br>
 								</div>
 							</div>
 						</div>
@@ -100,17 +122,23 @@
 									<div class="slide"></div>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#retard" role="tab">
-										<i class="ti-infinite"></i>Retard</a>
+									<a class="nav-link" data-toggle="tab" href="#abscence" role="tab">
+										<i class="ti-infinite"></i>Abscence</a>
 									<div class="slide"></div>
 								</li>
 							</ul>
 							<!-- Tab panes -->
 							<div class="tab-content card-block">
 								<div class="tab-pane active" id="classe" role="tabpanel">
-									<h5><strong>Classe</strong>: {{ eleve.classe.nom }}</h5><hr><br>
-									<h5><strong>Nombre de classe de 6eme</strong>: </h5><hr><br>
-									<h5><strong>Nombre d'eleve dans la classe</strong>: </h5><hr><br>
+									<h5>
+										<strong>Classe</strong>:
+										{{ eleve.classe.nom }}</h5><hr><br>
+									<h5>
+										<strong>Nombre de classe de 6eme</strong>:
+									</h5><hr><br>
+									<h5>
+										<strong>Nombre d'eleve dans la classe</strong>:
+									</h5><hr><br>
 								</div>
 								<div class="tab-pane" id="payement" role="tabpanel">
 									<p class="m-0">2.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>
@@ -118,8 +146,34 @@
 								<div class="tab-pane" id="performance" role="tabpanel">
 									<p class="m-0">3. This is Photoshop's version of Lorem IpThis is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean mas Cum sociis natoque penatibus et magnis dis.....</p>
 								</div>
-								<div class="tab-pane" id="retard" role="tabpanel">
-									<p class="m-0">4.Cras consequat in enim ut efficitur. Nulla posuere elit quis auctor interdum praesent sit amet nulla vel enim amet. Donec convallis tellus neque, et imperdiet felis amet.</p>
+								<div class="tab-pane" id="abscence" role="tabpanel">
+									<div class="content">
+										<table id="e" class="table" style="width:100%">
+											<thead>
+												<tr>
+													<th>Jour</th>
+													<th>Abscence</th>
+													<th>Actions</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for abscence in abscences %}
+													<tr>
+														<td>{{abscence.dateAt|date("m/d/Y")}}
+														<td>{{abscence.heurAbscence}}</td>
+														<td>
+															<a href="{{ path("admin_abscence_editer", {"id": abscence.id}) }}" title="Editer cette abcence" class="btn btn-inverse btn-actions btn-outline-inverse">
+															<i class="ti-marker-alt"></i>
+															</a>
+															<a href="{{ path("admin_abscence_supprimer", {"id": abscence.id}) }}" title="Supprimer cette abcence" class="btn btn-danger btn-outline-danger" onclick="return confirm('Etes vous sur de vouloir supprimer cet abscence ?. Cette action est irreversible')">
+															<i class="ti-trash"></i>
+															</a>
+														</td>
+													</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>

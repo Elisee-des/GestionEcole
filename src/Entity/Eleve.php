@@ -80,6 +80,11 @@ class Eleve
         $this->dateCreation = new \DateTime();
     }
 
+    public function __toString()
+    {
+        return $this->nom. " " . $this->prenom ."-". $this->annee->getNom();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -70,7 +70,8 @@ class EleveController extends AbstractController
         return $this->render('admin/eleve/detailEleve.html.twig', [
             // 'eleves' => $classe->getEleves(),
             'eleve' => $eleve,
-            'classe' => $eleve->getClasse()->getId()
+            'classe' => $eleve->getClasse()->getId(),
+            'abscences' => $eleve->getAbscences()
         ]);
     }
 

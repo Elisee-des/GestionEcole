@@ -28,6 +28,16 @@ class Abscence
      */
     private $eleve;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateAt;
+
+    public function __construct()
+    {
+        $this->dateAt = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +63,18 @@ class Abscence
     public function setEleve(?Eleve $eleve): self
     {
         $this->eleve = $eleve;
+
+        return $this;
+    }
+
+    public function getDateAt(): ?\DateTimeInterface
+    {
+        return $this->dateAt;
+    }
+
+    public function setDateAt(\DateTimeInterface $dateAt): self
+    {
+        $this->dateAt = $dateAt;
 
         return $this;
     }
