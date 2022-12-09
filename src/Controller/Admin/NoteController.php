@@ -2,8 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Annee;
+use App\Entity\Classe;
 use App\Entity\Note;
 use App\Form\Note\CreerNoteType;
+use App\Repository\AnneeRepository;
 use App\Repository\NoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,14 +21,38 @@ use Symfony\Component\Routing\Annotation\Route;
 class NoteController extends AbstractController
 {
     /**
-     * @Route("/", name="liste")
+     * @Route("/", name="annee")
      */
-    public function index(NoteRepository $noteRepository): Response
+    public function index(AnneeRepository $anneeRepository): Response
     {
-        $notes = $noteRepository->findAll();
+        $annees = $anneeRepository->findAll();
 
         return $this->render('admin/note/index.html.twig', [
-            'notes' => $notes,
+            'annees' => $annees,
+        ]);
+    }
+
+    /**
+     * @Route("/liste/classe/{id}", name="liste_classe")
+     */
+    public function listeClasses(Annee $annee): Response
+    {
+        $classe = $annee->getClasses();
+
+        return $this->render('admin/note/listeClasse.html.twig', [
+            'classes' => $classe,
+        ]);
+    }
+
+    /**
+     * @Route("/liste/eleves/{id}", name="liste_eleve")
+     */
+    public function listeEleves(Classe $classe): Response
+    {
+        $eleves = $classe->getEleves();
+
+        return $this->render('admin/note/listeEleves.html.twig', [
+            'eleves' => $eleves,
         ]);
     }
 
