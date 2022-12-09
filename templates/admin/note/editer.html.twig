@@ -1,0 +1,7 @@
+{% block content_titre_modale %}
+Editer l'année scolaire {{ annee.nom }}
+
+{% endblock %}
+<form method="POST" action="{{ path("admin_annee_editer", {id: annee.id}) }}" >
+    {{ form_widget(form) }}
+</form>

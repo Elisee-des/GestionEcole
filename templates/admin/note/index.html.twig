@@ -1,0 +1,52 @@
+{% extends "base.admin.html.twig" %}
+
+{% block title %}
+	Gestion des Notes
+{% endblock %}
+
+{% block titre %}
+	Gestion des Notes
+{% endblock %}
+{% block boutons %}
+	<a href="{{ path("admin_note_creer") }}" title="Cliquez pour Creer une annee scolaire" class="btn btn-inverse btn-actions btn-outline-inverse float-right"><i class="ti-plus"></i></a>
+{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="card-body">
+			<div class="content">
+				<table id="example" class="table table-striped nowrap" style="width:100%">
+					<thead>
+						<tr>
+							<th>Matiere</th>
+							<th>Note</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for note in notes %}
+							<tr>
+								<td>{{note.matiere.nom}}</td>
+								<td>{{note.note}}</td>
+								<td>
+									{# <a
+										href="{{ path("admin_annee_editer", {"id": annee.id}) }}" title="Editer cette anneé scolaire" class="btn btn-inverse btn-actions btn-outline-inverse">
+										<i class="ti-marker-alt"></i>
+									</a>
+
+
+									<a
+										href="{{ path("admin_annee_supprimer", {"id": annee.id}) }}" title="Supprimer cette anneé scolaire" class="btn btn-danger btn-outline-danger"  onclick="return confirm('Etes vous sur de vouloir supprimer cet anneé ? les Trimesre de cet anneé seront supprimer avec cette action. Cette action est irreversible')">
+										<i class="ti-trash"></i>
+									</a> #}
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
