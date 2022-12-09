@@ -1,0 +1,45 @@
+{% extends "base.admin.html.twig" %}
+
+{% block title %}
+	Liste des matieres de la classe de {{ classe.nom }}
+{% endblock %}
+
+{% block titre %}
+	Liste des matieres de la classe de {{ classe.nom }}
+{% endblock %}
+{% block boutons %}
+	{# <a href="{{ path("admin_matiere_creer") }}" title="Cliquez pour Creer une matiere scolaire" class="btn btn-inverse btn-actions btn-outline-inverse float-right"><i class="ti-plus"></i></a> #}
+{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="card-body">
+			<div class="content">
+				<table id="example" class="table table-striped nowrap" style="width:100%">
+					<thead>
+						<tr>
+							<th>Matieres</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for matiere in matieres %}
+							<tr>
+								<td>{{matiere.nom}}</td>
+								{# <td>{{matiere.matiere}}</td> #}
+								<td>
+									{# <a href="{{ path("admin_note_liste_eleve", {"id": matiere.id}) }}" title="Cliquez pour voir les eleves de cette matiere" class="btn btn-primary btn-outline-primary">
+										<i class="ti-receipt"></i>
+									</a> #}
+
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

@@ -1,11 +1,11 @@
 {% extends "base.admin.html.twig" %}
 
 {% block title %}
-	Gestion des annees en fonction des anneés
+	Gestion des Timestres en fonction des anneés
 {% endblock %}
 
 {% block titre %}
-	Gestion des annees en fonction des anneés
+	Gestion des Timestres en fonction des anneés
 {% endblock %}
 {% block boutons %}
 	{# <a href="{{ path("admin_annee_creer") }}" title="Cliquez pour Creer une annee scolaire" class="btn btn-inverse btn-actions btn-outline-inverse float-right"><i class="ti-plus"></i></a> #}
@@ -29,7 +29,7 @@
 								{# <td>{{annee.annee}}</td> #}
 								<td>
 									<a
-										href="{{ path("admin_note_liste_classe", {"id": annee.id}) }}" title="Cliquez pour voir classe" class="btn btn-primary btn-outline-primary">
+										href="{{ path("admin_note_liste_trimestre", {"id": annee.id}) }}" title="Cliquez pour voir les trimestre de cette annee" class="btn btn-primary btn-outline-primary">
 										<i class="ti-receipt"></i>
 									</a>
 									{# <a

@@ -63,4 +63,16 @@ class ClasseRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function getClasses($idAnnee)
+    {
+
+        $connexion = $this->_em->getConnection();
+
+        $resultat = $connexion->executeQuery("SELECT * FROM classe WHERE annee_id=$idAnnee");
+
+        $data = $resultat->fetchAllAssociative();
+
+        return $data;
+    }
 }

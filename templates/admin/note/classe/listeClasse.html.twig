@@ -1,0 +1,45 @@
+{% extends "base.admin.html.twig" %}
+
+{% block title %}
+	Liste des classes
+{% endblock %}
+
+{% block titre %}
+	Liste des classes
+{% endblock %}
+{% block boutons %}
+	{# <a href="{{ path("admin_classe_creer") }}" title="Cliquez pour Creer une classe scolaire" class="btn btn-inverse btn-actions btn-outline-inverse float-right"><i class="ti-plus"></i></a> #}
+{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="card-body">
+			<div class="content">
+				<table id="example" class="table table-striped nowrap" style="width:100%">
+					<thead>
+						<tr>
+							<th>Classe</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for classe in classes %}
+							<tr>
+								<td>{{classe.nom}}</td>
+								{# <td>{{classe.classe}}</td> #}
+								<td>
+									<a href="{{ path("admin_note_liste_matiere", {"id": classe.id}) }}" title="Cliquez pour voir les matieres de cette classe" class="btn btn-primary btn-outline-primary">
+										<i class="ti-receipt"></i>
+									</a>
+
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

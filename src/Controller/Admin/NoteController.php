@@ -5,8 +5,10 @@ namespace App\Controller\Admin;
 use App\Entity\Annee;
 use App\Entity\Classe;
 use App\Entity\Note;
+use App\Entity\Trimestre;
 use App\Form\Note\CreerNoteType;
 use App\Repository\AnneeRepository;
+use App\Repository\ClasseRepository;
 use App\Repository\NoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,14 +35,43 @@ class NoteController extends AbstractController
     }
 
     /**
+     * @Route("/liste/trimestre/{id}", name="liste_trimestre")
+     */
+    public function listeTrimestre(Annee $annee): Response
+    {
+        $trimestres = $annee->getTrimestres();
+
+        return $this->render('admin/note/trimestre/listeTrimestre.html.twig', [
+            'trimestres' => $trimestres,
+        ]);
+    }
+
+    /**
      * @Route("/liste/classe/{id}", name="liste_classe")
      */
-    public function listeClasses(Annee $annee): Response
+    public function listeClasses(Trimestre $trimestre, ClasseRepository $classeRepository): Response
     {
-        $classe = $annee->getClasses();
+        $idAnnee = $trimestre->getAnnee()->getId();
 
-        return $this->render('admin/note/listeClasse.html.twig', [
-            'classes' => $classe,
+        // dd($annee->getId());
+        $classes = $classeRepository->getClasses($idAnnee);
+
+        return $this->render('admin/note/classe/listeClasse.html.twig', [
+            'classes' => $classes,
+        ]);
+    }
+
+    /**
+     * @Route("/liste/matieres/{id}", name="liste_matiere")
+     */
+    public function listeMatiere(Classe $classe): Response
+    {
+
+        $matieres = $classe->getMatieres();
+
+        return $this->render('admin/note/matiere/listeMatieres.html.twig', [
+            'matieres' => $matieres,
+            'classe' => $classe
         ]);
     }
 

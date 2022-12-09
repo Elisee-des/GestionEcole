@@ -1,14 +1,14 @@
 {% extends "base.admin.html.twig" %}
 
 {% block title %}
-	Liste des classes
+	Liste des Trimestres
 {% endblock %}
 
 {% block titre %}
-	Liste des classes
+	Liste des Trimestres
 {% endblock %}
 {% block boutons %}
-	{# <a href="{{ path("admin_classe_creer") }}" title="Cliquez pour Creer une classe scolaire" class="btn btn-inverse btn-actions btn-outline-inverse float-right"><i class="ti-plus"></i></a> #}
+	{# <a href="{{ path("admin_trimestre_creer") }}" title="Cliquez pour Creer une trimestre scolaire" class="btn btn-inverse btn-actions btn-outline-inverse float-right"><i class="ti-plus"></i></a> #}
 {% endblock %}
 
 {% block body %}
@@ -18,17 +18,17 @@
 				<table id="example" class="table table-striped nowrap" style="width:100%">
 					<thead>
 						<tr>
-							<th>Classe</th>
+							<th>Trimestre</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						{% for classe in classes %}
+						{% for trimestre in trimestres %}
 							<tr>
-								<td>{{classe.nom}}</td>
-								{# <td>{{classe.classe}}</td> #}
+								<td>{{trimestre.nom}}</td>
+								{# <td>{{trimestre.trimestre}}</td> #}
 								<td>
-									<a href="{{ path("admin_note_liste_eleve", {"id": classe.id}) }}" title="Cliquez pour voir les eleves de cette classe" class="btn btn-primary btn-outline-primary">
+									<a href="{{ path("admin_note_liste_classe", {"id": trimestre.id}) }}" title="Cliquez pour voir les classes" class="btn btn-primary btn-outline-primary">
 										<i class="ti-receipt"></i>
 									</a>
 
