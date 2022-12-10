@@ -1,11 +1,11 @@
 {% extends "base.admin.html.twig" %}
 
 {% block title %}
-	Liste des notes de la classe de {{ matiere.nom }}
+	Liste des notes de la classe {{ classe.nom }} matiere: {{ matiere.nom }}
 {% endblock %}
 
 {% block titre %}
-	Liste des notes de la classe de {{ matiere.nom }}
+	Liste des notes de la classe {{ classe.nom }} matiere: {{ matiere.nom }}
 {% endblock %}
 {% block boutons %}
 	<a href="{{ path("admin_matiere_supprimer", {id: matiere.id}) }}" title="Cliquez pour supprimer cette matiere" class="mr-2 btn btn-danger btn-outline-danger float-right" onclick="return confirm('Voulez vous supprimer cet Matiere?Les notes de cette matiere seront supprimer par cette action.Voulez-vous contintuer ?')">

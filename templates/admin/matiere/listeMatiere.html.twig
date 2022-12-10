@@ -8,7 +8,7 @@
     Liste des matieres de la classe de {{ classe.nom }}
 {% endblock %}
 {% block boutons %}
-	<a href="{{ path("admin_matiere_creer_matiere", {id: classe.id}) }}" title="Ajouter une matiere a cette classe" class="btn btn-inverse btn-outline-inverse btn-actions float-right"><i class="ti-plus"></i></a>
+	<a href="{{ path("admin_matiere_creer_matieres", {id: classe.id}) }}" title="Ajouter une matiere a cette classe" class="btn btn-inverse btn-outline-inverse btn-actions float-right"><i class="ti-plus"></i></a>
 	{# <a href="{{ path("admin_classe_creer", {id: classe.id}) }}" class="btn btn-inverse btn-outline-inverse btn-actions float-right"><i class="ti-plus"></a> #}
 {% endblock %}
 
@@ -46,7 +46,7 @@
 	</div>
 	<div>
 		<a href="{{ path("admin_matiere_liste_classe", {id: classe.annee.id}) }}" class="mr-2 btn btn-inverse btn-outline-inverse float-left">
-			Retour a la liste des classe
+			Retour a la liste des classes
 	</a>
 	<br>
 </div>{% endblock %}{% block javascripts %}{% endblock %}

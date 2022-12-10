@@ -75,7 +75,7 @@ class MatiereController extends AbstractController
     }
 
     /**
-     * @Route("/creer/{id}", name="creer_matiere")
+     * @Route("/creerMatiere/{id}", name="creer_matieres")
      */
     public function creerPourMatiere(EntityManagerInterface $entityManager, Request $request, Classe $classe): Response
     {
@@ -86,9 +86,7 @@ class MatiereController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $nom = $request->get("creer_matiere")["nom"];
 
-            $matiere->setNom($nom);
             $matiere->setClasse($classe);
 
             $entityManager->persist($matiere);
@@ -119,9 +117,7 @@ class MatiereController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $nom = $request->get("editer_matiere")["nom"];
 
-            $matiere->setNom($nom);
             $matiere->setClasse($matiere->getClasse());
 
             $entityManager->persist($matiere);
@@ -132,7 +128,7 @@ class MatiereController extends AbstractController
                 "La matiere " . $matiere->getNom() . " a ete modifié avec succes"
             );
 
-            return $this->redirectToRoute('admin_matiere_liste_notes', ["id" => $matiere->getId()]);
+            return $this->redirectToRoute('admin_matiere_liste_matiere', ["id" => $matiere->getClasse()->getId()]);
         }
 
         return $this->render('admin/matiere/editerMatiere.html.twig', [
