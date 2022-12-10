@@ -261,7 +261,7 @@ class MatiereController extends AbstractController
 
         $this->addFlash(
             'success',
-            "matiere supprimer avec succes"
+            "Matiere supprimer avec succes"
         );
 
         return $this->redirectToRoute('admin_matiere_liste_matiere', ["id" => $matiere->getClasse()->getId()]);
