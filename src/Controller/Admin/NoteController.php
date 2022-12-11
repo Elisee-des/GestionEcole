@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Annee;
 use App\Entity\Classe;
+use App\Entity\Matiere;
 use App\Entity\Note;
 use App\Entity\Trimestre;
 use App\Form\Note\CreerNoteType;
@@ -72,6 +73,20 @@ class NoteController extends AbstractController
         return $this->render('admin/note/matiere/listeMatieres.html.twig', [
             'matieres' => $matieres,
             'classe' => $classe
+        ]);
+    }
+
+    /**
+     * @Route("/liste/notes/{id}", name="liste_note")
+     */
+    public function listeNote(Matiere $matiere): Response
+    {
+        $notes = $matiere->getNotes();
+        // dd($eleves);
+
+        return $this->render('admin/note/note/listeNote.html.twig', [
+            'notes' => $notes,
+            'matiere' => $matiere
         ]);
     }
 
